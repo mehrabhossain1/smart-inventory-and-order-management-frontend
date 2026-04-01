@@ -2,29 +2,34 @@
 
 import {useState} from "react";
 import Link from "next/link";
+import {useRouter} from "next/navigation";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
-import {Checkbox} from "@/components/ui/checkbox";
-import {Label} from "@/components/ui/label";
 import {registerSlides} from "@/helpers/constant";
 import {AuthLayout} from "@/shared/layouts/auth-layout";
 import {PasswordInput} from "../../components/password-input";
-import {SocialLoginButtons} from "./social-login-buttons";
+import {useAuthStore} from "@/store/auth-store";
+import {PATHS} from "@/config/paths";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 
 export default function RegisterForm() {
     const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
+        username: "",
         email: "",
         password: "",
-        agreedToTerms: false,
+        role: "manager" as "admin" | "manager",
     });
+    const {register, isLoading, error, clearError} = useAuthStore();
+    const router = useRouter();
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle registration logic here
-        console.log("Register:", formData);
+        try {
+            await register(formData.username, formData.email, formData.password, formData.role);
+            router.push(PATHS.auth.login);
+        } catch {
+            // error is set in store
+        }
     };
 
     return (
@@ -36,7 +41,7 @@ export default function RegisterForm() {
                 <p className="text-base text-gray-500 max-w-2xl mx-auto">
                     Already have an account?{" "}
                     <Link
-                        href="/login"
+                        href={PATHS.auth.login}
                         className="text-primary-light font-medium hover:underline"
                     >
                         Log in
@@ -44,56 +49,55 @@ export default function RegisterForm() {
                 </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-5">
+            {error && (
+                <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm">
+                    {error}
+                    <button
+                        onClick={clearError}
+                        className="ml-2 text-red-500 hover:text-red-700 font-medium"
+                    >
+                        Dismiss
+                    </button>
+                </div>
+            )}
 
+            <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-5">
                 <Input
                     type="text"
-                    placeholder="First name"
-                    value={formData.firstName}
+                    placeholder="Username"
+                    value={formData.username}
                     onChange={(e) =>
-                        setFormData({
-                            ...formData,
-                            firstName: e.target.value,
-                        })
+                        setFormData({...formData, username: e.target.value})
                     }
                     className="border-border focus-visible:ring-primary-lighter/30 py-6 !text-base"
                     required
                 />
 
-                <div className="grid grid-cols-2 gap-3 lg:gap-4">
-                    <Input
-                        type="email"
-                        placeholder="Email"
-                        value={formData.email}
-                        onChange={(e) =>
-                            setFormData({
-                                ...formData,
-                                email: e.target.value,
-                            })
-                        }
-                        className="border-border focus-visible:ring-primary-lighter/30 py-6 !text-base"
-                        required
-                    />
-                    <Select
-                        value={''}
-                    >
-                        <SelectTrigger
-                            className='w-full py-6 border-border focus-visible:ring-primary-lighter/30'>
-                            <SelectValue placeholder="Select category"/>
-                        </SelectTrigger>
-                        <SelectContent position="popper">
-                            <SelectItem value="frontend-developer">Frontend Developer</SelectItem>
-                            <SelectItem value="backend-developer">Backend Developer</SelectItem>
-                            <SelectItem value="fullstack-developer">Full Stack Developer</SelectItem>
-                            <SelectItem value="ui-ux-designer">UI/UX Designer</SelectItem>
-                            <SelectItem value="devops-engineer">DevOps Engineer</SelectItem>
-                            <SelectItem value="data-scientist">Data Scientist</SelectItem>
-                            <SelectItem value="cyber-security">Cyber Security Engineer</SelectItem>
-                            <SelectItem value="product-manager">Product Manager</SelectItem>
+                <Input
+                    type="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={(e) =>
+                        setFormData({...formData, email: e.target.value})
+                    }
+                    className="border-border focus-visible:ring-primary-lighter/30 py-6 !text-base"
+                    required
+                />
 
-                        </SelectContent>
-                    </Select>
-                </div>
+                <Select
+                    value={formData.role}
+                    onValueChange={(value) =>
+                        setFormData({...formData, role: value as "admin" | "manager"})
+                    }
+                >
+                    <SelectTrigger className="w-full py-6 border-border focus-visible:ring-primary-lighter/30">
+                        <SelectValue placeholder="Select role"/>
+                    </SelectTrigger>
+                    <SelectContent position="popper">
+                        <SelectItem value="manager">Manager</SelectItem>
+                        <SelectItem value="admin">Admin</SelectItem>
+                    </SelectContent>
+                </Select>
 
                 <PasswordInput
                     value={formData.password}
@@ -102,40 +106,13 @@ export default function RegisterForm() {
                     }
                 />
 
-                <div className="flex items-center space-x-2">
-                    <Checkbox
-                        id="terms"
-                        checked={formData.agreedToTerms}
-                        onCheckedChange={(checked) =>
-                            setFormData({
-                                ...formData,
-                                agreedToTerms: checked === true,
-                            })
-                        }
-                    />
-                    <Label
-                        htmlFor="terms"
-                        className="text-sm text-muted-foreground gap-1 cursor-pointer"
-                    >
-                        I agree to the
-                        <Link
-                            href="/terms"
-                            className="text-primary-light hover:underline"
-                        >
-                            Terms & Conditions
-                        </Link>
-                    </Label>
-                </div>
-
                 <Button
                     type="submit"
+                    disabled={isLoading}
                     className="w-full bg-primary-light hover:bg-primary-light/90 text-white h-11 lg:h-12 text-sm lg:text-base font-semibold rounded-lg"
-                    disabled={!formData.agreedToTerms}
                 >
-                    Create account
+                    {isLoading ? "Creating account..." : "Create account"}
                 </Button>
-
-                <SocialLoginButtons dividerText="Or"/>
             </form>
         </AuthLayout>
     );

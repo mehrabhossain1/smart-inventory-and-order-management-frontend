@@ -24,35 +24,18 @@ const roboto = Roboto({
     subsets: ["latin"],
 });
 
-
 export const metadata: Metadata = {
-    title: "DevJobs Network | Find Your Dream Developer Job",
+    title: "Smart Inventory | Inventory & Order Management",
     description:
-        "DevJobs Network connects talented developers with top tech companies. Browse verified job opportunities, showcase your skills, and accelerate your career growth.",
+        "Smart Inventory & Order Management System — manage products, stock levels, customer orders, and fulfillment workflows with validation and conflict handling.",
     keywords: [
-        "developer jobs",
-        "tech jobs",
-        "software engineering jobs",
-        "remote developer jobs",
-        "frontend jobs",
-        "backend jobs",
-        "full stack jobs",
-        "DevJobs Network",
+        "inventory management",
+        "order management",
+        "stock tracking",
+        "restock queue",
+        "product management",
+        "smart inventory",
     ],
-    openGraph: {
-        title: "DevJobs Network | Find Your Dream Developer Job",
-        description:
-            "Connect with top tech companies and discover opportunities that match your skills.",
-        url: "https://devjobs-network.com",
-        siteName: "DevJobs Network",
-        type: "website",
-    },
-    twitter: {
-        card: "summary_large_image",
-        title: "DevJobs Network | Find Your Dream Developer Job",
-        description:
-            "Connect with top tech companies and discover opportunities that match your skills.",
-    },
 };
 
 export default function RootLayout({
@@ -63,7 +46,7 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body
-            className={`${geistSans.variable} ${geistMono.variable} ${viga.variable} ${roboto.variable} antialiased `}
+            className={`${geistSans.variable} ${geistMono.variable} ${viga.variable} ${roboto.variable} antialiased`}
         >
         {children}
         </body>

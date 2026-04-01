@@ -1,18 +1,16 @@
 export const PATHS = {
-    home: '/',
+    home: "/",
     auth: {
-        login: '/login',
-        register: '/register',
-        forgetPassword: '/forget-password'
+        login: "/login",
+        register: "/register",
     },
-    public: {
-        talentListing: '/talents',
-        about: '/about',
-        contact: '/contact',
-        jobListing: '/jobs',
-        blogs: '/blogs',
-        termsOfService: '/terms',
-        privacyPolicy: '/privacy-policy',
-        helpCenter: '/help-center'
+    dashboard: {
+        home: "/dashboard",
+        products: "/dashboard/products",
+        categories: "/dashboard/categories",
+        orders: "/dashboard/orders",
+        orderDetail: (id: string) => `/dashboard/orders/${id}`,
+        restock: "/dashboard/restock",
+        activity: "/dashboard/activity",
     },
-}
+} as const;
