@@ -3,6 +3,7 @@ import {SocketProvider} from "@/shared/providers/socket-provider";
 import {Sidebar} from "@/shared/layouts/sidebar";
 import {DashboardHeader} from "@/shared/layouts/dashboard-header";
 import {Toaster} from "@/components/ui/sonner";
+import {NotificationPanel} from "@/features/notifications/notification-panel";
 
 export default function DashboardLayout({children}: { children: React.ReactNode }) {
     return (
@@ -17,6 +18,7 @@ export default function DashboardLayout({children}: { children: React.ReactNode 
                         </main>
                     </div>
                 </div>
+                <NotificationPanel/>
                 <Toaster richColors position="top-right"/>
             </SocketProvider>
         </AuthProvider>

@@ -35,5 +35,12 @@ export const API_ENDPOINTS = {
     activity: {
         recent: "/activity/recent",
     },
+    notifications: {
+        list: "/notifications",
+        unreadCount: "/notifications/unread-count",
+        markRead: (id: string) => `/notifications/${id}/read`,
+        markAllRead: "/notifications/read-all",
+        delete: (id: string) => `/notifications/${id}`,
+    },
     ping: "/ping",
 } as const;

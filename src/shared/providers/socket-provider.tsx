@@ -4,6 +4,7 @@ import {createContext, useContext, useEffect, useState, useCallback} from "react
 import {Socket} from "socket.io-client";
 import {connectSocket, disconnectSocket} from "@/lib/socket";
 import {useAuthStore} from "@/store/auth-store";
+import {useNotificationStore} from "@/store/notification-store";
 import {toast} from "sonner";
 
 interface SocketContextValue {
@@ -21,26 +22,21 @@ export function SocketProvider({children}: { children: React.ReactNode }) {
     const [socket, setSocket] = useState<Socket | null>(null);
     const [connected, setConnected] = useState(false);
     const {token} = useAuthStore();
+    const {addRealTimeNotification, fetchUnreadCount} = useNotificationStore();
 
-    const showNotification = useCallback((event: string, data: Record<string, unknown>) => {
-        switch (event) {
-            case "order:created":
-                toast.info(`New order from ${data.customerName || "a customer"}`);
-                break;
-            case "order:statusChanged":
-                toast.info(`Order status changed to ${data.status}`);
-                break;
-            case "order:cancelled":
-                toast.info("An order was cancelled");
-                break;
-            case "stock:updated":
-                toast.info(`Stock updated for ${data.name || "a product"}`);
-                break;
-            case "restock:changed":
-                toast.info(`${data.name || "Product"} restocked`);
-                break;
-        }
-    }, []);
+    const showNotification = useCallback((data: Record<string, unknown>) => {
+        const title = (data.title as string) || "Notification";
+        const message = (data.message as string) || "";
+        toast.info(title, {description: message});
+
+        addRealTimeNotification({
+            type: data.type as string,
+            title,
+            message,
+            actionUrl: data.actionUrl as string,
+            createdAt: (data.timestamp as string) || new Date().toISOString(),
+        });
+    }, [addRealTimeNotification]);
 
     useEffect(() => {
         if (!token) return;
@@ -51,21 +47,28 @@ export function SocketProvider({children}: { children: React.ReactNode }) {
         s.on("connect", () => setConnected(true));
         s.on("disconnect", () => setConnected(false));
 
-        const events = ["order:created", "order:statusChanged", "order:cancelled", "stock:updated", "restock:changed"];
-        for (const event of events) {
+        // Listen for targeted notifications
+        s.on("notification:new", (data: Record<string, unknown>) => {
+            showNotification(data);
+        });
+
+        // Listen for broadcast events (for data refresh)
+        const broadcastEvents = ["order:created", "order:statusChanged", "order:cancelled", "stock:updated", "restock:changed"];
+        for (const event of broadcastEvents) {
             s.on(event, (data: Record<string, unknown>) => {
-                showNotification(event, data);
-                // Dispatch custom DOM event so hooks can listen
                 window.dispatchEvent(new CustomEvent("socket:event", {detail: {event, data}}));
             });
         }
+
+        // Fetch initial unread count
+        fetchUnreadCount();
 
         return () => {
             disconnectSocket();
             setSocket(null);
             setConnected(false);
         };
-    }, [token, showNotification]);
+    }, [token, showNotification, fetchUnreadCount]);
 
     return (
         <SocketContext.Provider value={{socket, connected}}>
