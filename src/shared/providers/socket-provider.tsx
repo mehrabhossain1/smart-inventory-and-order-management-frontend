@@ -48,7 +48,7 @@ export function SocketProvider({children}: { children: React.ReactNode }) {
         if (!token) return;
 
         const s = connectSocket(token);
-        setSocket(s);
+        requestAnimationFrame(() => setSocket(s));
 
         s.on("connect", () => setConnected(true));
         s.on("disconnect", () => setConnected(false));

@@ -11,7 +11,7 @@ export function AuthProvider({children}: { children: React.ReactNode }) {
 
     useEffect(() => {
         loadFromStorage();
-        setHydrated(true);
+        requestAnimationFrame(() => setHydrated(true));
     }, [loadFromStorage]);
 
     useEffect(() => {

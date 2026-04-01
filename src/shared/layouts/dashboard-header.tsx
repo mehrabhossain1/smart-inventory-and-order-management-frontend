@@ -31,7 +31,9 @@ export function DashboardHeader() {
     const {connected} = useSocket();
     const [mounted, setMounted] = useState(false);
 
-    useEffect(() => setMounted(true), []);
+    useEffect(() => {
+        requestAnimationFrame(() => setMounted(true));
+    }, []);
 
     const title = pageTitles[pathname] || (pathname.startsWith("/dashboard/orders/") ? "Order Details" : "Dashboard");
 
