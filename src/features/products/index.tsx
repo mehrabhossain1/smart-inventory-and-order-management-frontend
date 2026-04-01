@@ -3,6 +3,7 @@
 import {useState} from "react";
 import {Button} from "@/components/ui/button";
 import {Plus, ChevronLeft, ChevronRight} from "lucide-react";
+import {useDebounce} from "@/lib/use-debounce";
 import {useAuthStore} from "@/store/auth-store";
 import {useProducts} from "./use-products";
 import {useCategories} from "@/features/categories/use-categories";
@@ -20,8 +21,10 @@ export default function ProductsPage() {
     const [status, setStatus] = useState("all");
     const [page, setPage] = useState(1);
 
+    const debouncedSearch = useDebounce(search);
+
     const {products, total, loading, refetch} = useProducts({
-        search,
+        search: debouncedSearch,
         category: category === "all" ? undefined : category,
         status: status === "all" ? undefined : status,
         page,
