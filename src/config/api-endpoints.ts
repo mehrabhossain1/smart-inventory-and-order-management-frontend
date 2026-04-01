@@ -49,5 +49,8 @@ export const API_ENDPOINTS = {
         withContact: (contactId: string) => `/messages/${contactId}`,
         send: "/messages",
     },
+    system: {
+        health: "/system/health",
+    },
     ping: "/ping",
 } as const;

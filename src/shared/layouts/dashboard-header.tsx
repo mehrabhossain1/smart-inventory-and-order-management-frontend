@@ -21,6 +21,7 @@ const pageTitles: Record<string, string> = {
     "/dashboard/restock": "Restock Queue",
     "/dashboard/activity": "Activity Log",
     "/dashboard/messages": "Messages",
+    "/dashboard/system": "System Health",
 };
 
 export function DashboardHeader() {

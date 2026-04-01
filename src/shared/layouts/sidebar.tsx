@@ -15,6 +15,7 @@ import {
     AlertTriangle,
     Activity,
     MessageSquare,
+    Monitor,
     LogOut,
 } from "lucide-react";
 import {Badge} from "@/components/ui/badge";
@@ -28,6 +29,7 @@ const iconMap: Record<string, React.ElementType> = {
     AlertTriangle,
     Activity,
     MessageSquare,
+    Monitor,
 };
 
 export function Sidebar() {

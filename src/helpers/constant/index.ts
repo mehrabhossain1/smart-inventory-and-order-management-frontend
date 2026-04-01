@@ -53,6 +53,7 @@ export const sidebarLinks = [
     },
     { name: "Activity Log", href: PATHS.dashboard.activity, icon: "Activity" },
     { name: "Messages", href: PATHS.dashboard.messages, icon: "MessageSquare" },
+    { name: "System", href: PATHS.dashboard.system, icon: "Monitor" },
 ];
 
 export const orderStatuses = [

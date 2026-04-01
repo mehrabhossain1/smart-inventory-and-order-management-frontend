@@ -285,6 +285,74 @@ With JWT stored in localStorage and a client-rendered dashboard, there's a windo
 ### 6. Mapping Backend Response Shapes to Frontend Types
 The backend API returns data in varying structures -- nested under different keys (`dashboard.ordersByStatus`, `queue`, `logs`), with different casing conventions, and with Mongoose-populated references that change shape depending on the endpoint. Building a typed API client that correctly maps every response shape to strict TypeScript interfaces required reading every backend controller and model to match field names exactly, catching subtle mismatches like `id` vs `_id` and `lowStockItemsCount` vs `lowStockItems`.
 
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                        Client (Browser)                      │
+│                                                              │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │           Next.js 16 (Vercel)                         │   │
+│  │  ┌─────────┐ ┌──────────┐ ┌─────────┐ ┌──────────┐  │   │
+│  │  │  Auth    │ │Dashboard │ │ Orders  │ │ Messages │  │   │
+│  │  │  Pages   │ │+ Charts  │ │+ Detail │ │  (Chat)  │  │   │
+│  │  └─────────┘ └──────────┘ └─────────┘ └──────────┘  │   │
+│  │  ┌─────────┐ ┌──────────┐ ┌─────────┐ ┌──────────┐  │   │
+│  │  │Products │ │Categories│ │ Restock │ │  System  │  │   │
+│  │  │+Filters │ │  CRUD    │ │  Queue  │ │  Health  │  │   │
+│  │  └─────────┘ └──────────┘ └─────────┘ └──────────┘  │   │
+│  │                                                       │   │
+│  │  Zustand ──── Socket.io Client ──── Sonner (Toast)   │   │
+│  └──────────────────────┬───────────────────────────────┘   │
+│                         │                                    │
+└─────────────────────────┼────────────────────────────────────┘
+                          │
+            ┌─────────────┴─────────────┐
+            │  REST API    │  WebSocket  │
+            │  (HTTPS)     │  (WSS)      │
+            └──────┬───────┴──────┬──────┘
+                   │              │
+┌──────────────────┴──────────────┴──────────────────┐
+│              Express.js 5 (Render)                   │
+│                                                      │
+│  ┌────────────┐  ┌──────────┐  ┌────────────────┐  │
+│  │ Controllers│  │Socket.io │  │   Middleware    │  │
+│  │ (12 files) │  │ Server   │  │ JWT + Roles +  │  │
+│  │            │  │ 10 events│  │ Metrics        │  │
+│  └─────┬──────┘  └──────────┘  └────────────────┘  │
+│        │                                             │
+│  ┌─────┴──────────────────────────────────────────┐ │
+│  │              Mongoose ODM                       │ │
+│  └─────────────────────┬──────────────────────────┘ │
+└────────────────────────┼────────────────────────────┘
+                         │
+              ┌──────────┴──────────┐
+              │   MongoDB Atlas      │
+              │                      │
+              │  Users    Products   │
+              │  Orders   Categories │
+              │  Restock  Activity   │
+              │  Notifs   Messages   │
+              └─────────────────────┘
+
+GitHub Actions CI/CD
+├── Frontend: Lint → Test (21) → Build
+└── Backend:  Test (22) → Pass
+```
+
+## Project Stats
+
+| Metric | Count |
+| ------ | ----- |
+| API Endpoints | 35+ |
+| WebSocket Events | 10 |
+| Frontend Pages | 10 |
+| Backend Tests | 22 |
+| Frontend Tests | 21 |
+| Zustand Stores | 4 |
+| MongoDB Collections | 8 |
+| Feature Modules | 9 |
+
 ## Author
 
 Made by **Mehrab Hossain**

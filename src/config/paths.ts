@@ -13,5 +13,6 @@ export const PATHS = {
         restock: "/dashboard/restock",
         activity: "/dashboard/activity",
         messages: "/dashboard/messages",
+        system: "/dashboard/system",
     },
 } as const;
