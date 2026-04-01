@@ -67,8 +67,8 @@ export function AnalyticsCharts() {
                         <YAxis tick={{fontSize: 12, fill: "#94a3b8"}} axisLine={false} tickLine={false} tickFormatter={(v) => `$${v}`} />
                         <Tooltip
                             contentStyle={{background: "var(--card)", border: "1px solid var(--border)", borderRadius: 12, fontSize: 13}}
-                            formatter={(value: unknown) => [formatCurrency(Number(value)), "Revenue"]}
-                            labelFormatter={(label: unknown) => formatDay(String(label))}
+                            formatter={(value) => [formatCurrency(Number(value)), "Revenue"] as const}
+                            labelFormatter={(label) => formatDay(String(label))}
                         />
                         <Line type="monotone" dataKey="revenue" stroke="#8000ff" strokeWidth={2.5} dot={{fill: "#8000ff", r: 4}} activeDot={{r: 6, fill: "#8000ff"}} />
                     </LineChart>
@@ -96,7 +96,7 @@ export function AnalyticsCharts() {
                             </Pie>
                             <Tooltip
                                 contentStyle={{background: "var(--card)", border: "1px solid var(--border)", borderRadius: 12, fontSize: 13}}
-                                formatter={(value: unknown, name: unknown) => [value, name]}
+                                formatter={(value, name) => [String(value), String(name)] as const}
                             />
                         </PieChart>
                     </ResponsiveContainer>
@@ -127,7 +127,7 @@ export function AnalyticsCharts() {
                             <YAxis dataKey="name" type="category" tick={{fontSize: 12, fill: "#94a3b8"}} axisLine={false} tickLine={false} width={100} />
                             <Tooltip
                                 contentStyle={{background: "var(--card)", border: "1px solid var(--border)", borderRadius: 12, fontSize: 13}}
-                                formatter={(value: unknown) => [value, "Units Sold"]}
+                                formatter={(value) => [String(value), "Units Sold"] as const}
                             />
                             <Bar dataKey="totalSold" fill="#8000ff" radius={[0, 6, 6, 0]} barSize={20} />
                         </BarChart>
