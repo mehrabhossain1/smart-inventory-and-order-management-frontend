@@ -1,6 +1,7 @@
 "use client";
 
 import {ReactNode, useEffect, useState} from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {AuthSlide} from "@/shared/types";
 import {Package} from "lucide-react";
@@ -30,16 +31,39 @@ export function AuthLayout({children, slides}: AuthLayoutProps) {
         >
             <div className="hidden lg:flex lg:w-1/2 p-4">
                 <div
-                    className="w-full h-full bg-gradient-to-br from-primary-light/20 via-fill-background/30 to-primary rounded-3xl flex items-end justify-center relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary-light/30 via-fill-background/40 to-primary/80" />
+                    className="w-full h-full bg-gradient-to-br from-primary-light/20 via-fill-background/30 to-primary rounded-3xl flex flex-col items-center justify-center relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-light/30 via-fill-background/40 to-primary/80"/>
 
                     <div className="absolute top-6 left-6 z-20">
                         <Link href="/" className="flex items-center space-x-2">
-                            <Package className="size-8 text-white" />
+                            <Package className="size-8 text-white"/>
                             <span className="text-xl font-viga text-white hidden sm:inline">
                                 Smart Inventory
                             </span>
                         </Link>
+                    </div>
+
+                    {/* Slide illustrations */}
+                    <div className="relative z-10 w-full flex-1 flex items-center justify-center px-12">
+                        {slides.map((slide, index) => (
+                            <div
+                                key={index}
+                                className={`absolute transition-opacity duration-700 ease-in-out ${
+                                    index === currentSlide ? "opacity-100" : "opacity-0"
+                                }`}
+                            >
+                                {slide.image && (
+                                    <Image
+                                        src={slide.image}
+                                        alt={slide.title}
+                                        width={320}
+                                        height={240}
+                                        className="drop-shadow-2xl"
+                                        priority={index === 0}
+                                    />
+                                )}
+                            </div>
+                        ))}
                     </div>
 
                     <div className="relative z-10 w-full p-6 lg:p-8 pb-8 lg:pb-10 flex flex-col items-center">

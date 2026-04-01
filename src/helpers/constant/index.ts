@@ -3,14 +3,17 @@ import { AuthSlide } from "@/shared/types";
 
 export const loginSlides: AuthSlide[] = [
     {
+        image: "/inventory-hero.svg",
         title: "Welcome Back!",
         subtitle: "Manage your inventory and orders efficiently",
     },
     {
+        image: "/stock-tracking.svg",
         title: "Real-Time Stock Tracking",
         subtitle: "Stay on top of your product levels and restock needs",
     },
     {
+        image: "/order-management.svg",
         title: "Streamlined Orders",
         subtitle: "Create, track, and fulfill orders with ease",
     },
@@ -18,14 +21,17 @@ export const loginSlides: AuthSlide[] = [
 
 export const registerSlides: AuthSlide[] = [
     {
+        image: "/inventory-hero.svg",
         title: "Get Started Today",
         subtitle: "Set up your inventory management in minutes",
     },
     {
+        image: "/stock-tracking.svg",
         title: "Smart Stock Alerts",
         subtitle: "Never run out of stock with automatic restock notifications",
     },
     {
+        image: "/order-management.svg",
         title: "Complete Visibility",
         subtitle: "Dashboard insights for data-driven decisions",
     },

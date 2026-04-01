@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <circle cx="200" cy="150" r="110" fill="#FFB835" opacity="0.05"/>
+
+  <!-- Order document -->
+  <rect x="120" y="50" width="160" height="200" rx="10" fill="white" stroke="#e5e7eb" stroke-width="1.5" filter="drop-shadow(0 4px 12px rgba(0,0,0,0.08))"/>
+
+  <!-- Header -->
+  <rect x="135" y="65" width="50" height="8" rx="4" fill="#8000ff" opacity="0.6"/>
+  <rect x="135" y="80" width="80" height="6" rx="3" fill="#8000ff" opacity="0.2"/>
+
+  <!-- Divider -->
+  <line x1="135" y1="96" x2="265" y2="96" stroke="#e5e7eb" stroke-width="1"/>
+
+  <!-- Order items -->
+  <rect x="135" y="106" width="130" height="28" rx="4" fill="#8000ff" opacity="0.04"/>
+  <rect x="142" y="112" width="14" height="14" rx="3" fill="#8000ff" opacity="0.15"/>
+  <rect x="162" y="113" width="50" height="5" rx="2.5" fill="#374151" opacity="0.6"/>
+  <rect x="162" y="122" width="30" height="4" rx="2" fill="#9ca3af" opacity="0.5"/>
+  <rect x="240" y="115" width="20" height="6" rx="3" fill="#8000ff" opacity="0.4"/>
+
+  <rect x="135" y="140" width="130" height="28" rx="4" fill="#22c55e" opacity="0.04"/>
+  <rect x="142" y="146" width="14" height="14" rx="3" fill="#22c55e" opacity="0.15"/>
+  <rect x="162" y="147" width="60" height="5" rx="2.5" fill="#374151" opacity="0.6"/>
+  <rect x="162" y="156" width="35" height="4" rx="2" fill="#9ca3af" opacity="0.5"/>
+  <rect x="240" y="149" width="20" height="6" rx="3" fill="#22c55e" opacity="0.4"/>
+
+  <rect x="135" y="174" width="130" height="28" rx="4" fill="#FFB835" opacity="0.04"/>
+  <rect x="142" y="180" width="14" height="14" rx="3" fill="#FFB835" opacity="0.15"/>
+  <rect x="162" y="181" width="45" height="5" rx="2.5" fill="#374151" opacity="0.6"/>
+  <rect x="162" y="190" width="25" height="4" rx="2" fill="#9ca3af" opacity="0.5"/>
+  <rect x="240" y="183" width="20" height="6" rx="3" fill="#FFB835" opacity="0.4"/>
+
+  <!-- Total -->
+  <line x1="135" y1="212" x2="265" y2="212" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="200" y="220" width="65" height="10" rx="5" fill="#8000ff" opacity="0.7"/>
+
+  <!-- Status workflow arrows -->
+  <g transform="translate(300, 90)">
+    <rect width="70" height="24" rx="12" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1"/>
+    <text x="35" y="16" text-anchor="middle" fill="#92400E" font-size="9" font-weight="500">Pending</text>
+  </g>
+  <path d="M335 118v10" stroke="#9ca3af" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <g transform="translate(300, 134)">
+    <rect width="70" height="24" rx="12" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1"/>
+    <text x="35" y="16" text-anchor="middle" fill="#1E40AF" font-size="9" font-weight="500">Confirmed</text>
+  </g>
+  <path d="M335 162v10" stroke="#9ca3af" stroke-width="1.5"/>
+  <g transform="translate(300, 178)">
+    <rect width="70" height="24" rx="12" fill="#E0E7FF" stroke="#6366F1" stroke-width="1"/>
+    <text x="35" y="16" text-anchor="middle" fill="#3730A3" font-size="9" font-weight="500">Shipped</text>
+  </g>
+  <path d="M335 206v10" stroke="#9ca3af" stroke-width="1.5"/>
+  <g transform="translate(300, 222)">
+    <rect width="70" height="24" rx="12" fill="#D1FAE5" stroke="#10B981" stroke-width="1"/>
+    <text x="35" y="16" text-anchor="middle" fill="#065F46" font-size="9" font-weight="500">Delivered</text>
+  </g>
+</svg>
