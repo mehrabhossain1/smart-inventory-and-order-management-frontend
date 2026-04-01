@@ -74,18 +74,29 @@ export interface RestockQueueItem {
     updatedAt: string;
 }
 
+export interface DashboardApiResponse {
+    message: string;
+    dashboard: DashboardSummary;
+}
+
 export interface DashboardSummary {
-    ordersToday: number;
+    totalOrdersToday: number;
     ordersByStatus: {
-        Pending: number;
-        Confirmed: number;
-        Shipped: number;
-        Delivered: number;
-        Cancelled: number;
+        pending: number;
+        confirmed: number;
+        shipped: number;
+        delivered: number;
+        cancelled: number;
     };
-    lowStockItems: number;
+    lowStockItemsCount: number;
     revenueToday: number;
-    topLowStockProducts: Pick<Product, "_id" | "name" | "quantity" | "minimumStockThreshold" | "status">[];
+    productSummary: {
+        name: string;
+        quantity: number;
+        threshold: number;
+        status: string;
+        stockLevel: string;
+    }[];
     recentActivity: ActivityLog[];
 }
 

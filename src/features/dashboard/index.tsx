@@ -3,7 +3,7 @@
 import {useEffect, useState} from "react";
 import {apiClient} from "@/lib/api-client";
 import {API_ENDPOINTS} from "@/config/api-endpoints";
-import type {DashboardSummary} from "@/shared/types";
+import type {DashboardApiResponse, DashboardSummary} from "@/shared/types";
 import {formatCurrency} from "@/helpers";
 import {StatCard} from "./stat-card";
 import {ProductSummary} from "./product-summary";
@@ -23,8 +23,8 @@ export default function DashboardPage() {
 
     useEffect(() => {
         apiClient
-            .get<DashboardSummary>(API_ENDPOINTS.dashboard.summary)
-            .then(setData)
+            .get<DashboardApiResponse>(API_ENDPOINTS.dashboard.summary)
+            .then((res) => setData(res.dashboard))
             .catch(console.error)
             .finally(() => setLoading(false));
     }, []);
@@ -54,24 +54,24 @@ export default function DashboardPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                 <StatCard
                     title="Orders Today"
-                    value={data.ordersToday}
+                    value={data.totalOrdersToday}
                     icon={<ShoppingCart className="size-6"/>}
                 />
                 <StatCard
                     title="Pending Orders"
-                    value={data.ordersByStatus.Pending}
+                    value={data.ordersByStatus.pending}
                     icon={<Clock className="size-6"/>}
                     iconClassName="bg-yellow-100 text-yellow-700"
                 />
                 <StatCard
                     title="Delivered"
-                    value={data.ordersByStatus.Delivered}
+                    value={data.ordersByStatus.delivered}
                     icon={<CheckCircle className="size-6"/>}
                     iconClassName="bg-green-100 text-green-700"
                 />
                 <StatCard
                     title="Low Stock Items"
-                    value={data.lowStockItems}
+                    value={data.lowStockItemsCount}
                     icon={<AlertTriangle className="size-6"/>}
                     iconClassName="bg-red-100 text-red-700"
                 />
@@ -84,7 +84,7 @@ export default function DashboardPage() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <ProductSummary products={data.topLowStockProducts || []}/>
+                <ProductSummary products={data.productSummary || []}/>
                 <ActivityFeed activities={data.recentActivity || []}/>
             </div>
         </div>

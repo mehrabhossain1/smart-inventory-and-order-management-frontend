@@ -2,32 +2,39 @@
 
 import {Card} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
-import type {Product} from "@/shared/types";
+
+interface ProductSummaryItem {
+    name: string;
+    quantity: number;
+    threshold: number;
+    status: string;
+    stockLevel: string;
+}
 
 interface ProductSummaryProps {
-    products: Pick<Product, "_id" | "name" | "quantity" | "minimumStockThreshold" | "status">[];
+    products: ProductSummaryItem[];
 }
 
 export function ProductSummary({products}: ProductSummaryProps) {
     return (
         <Card className="p-5">
-            <h3 className="text-base font-semibold text-gray-900 mb-4">Low Stock Products</h3>
+            <h3 className="text-base font-semibold text-gray-900 mb-4">Product Stock Summary</h3>
             {products.length === 0 ? (
-                <p className="text-sm text-gray-500">All products are well-stocked.</p>
+                <p className="text-sm text-gray-500">No products found.</p>
             ) : (
                 <div className="space-y-3">
-                    {products.map((product) => {
+                    {products.map((product, i) => {
+                        const isLowStock = product.stockLevel === "Low Stock";
                         const isOutOfStock = product.quantity === 0;
-                        const isLow = product.quantity <= product.minimumStockThreshold;
                         return (
                             <div
-                                key={product._id}
+                                key={i}
                                 className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0"
                             >
                                 <div>
                                     <p className="text-sm font-medium text-gray-900">{product.name}</p>
                                     <p className="text-xs text-gray-500">
-                                        Threshold: {product.minimumStockThreshold}
+                                        Threshold: {product.threshold}
                                     </p>
                                 </div>
                                 <div className="flex items-center gap-2">
@@ -39,12 +46,12 @@ export function ProductSummary({products}: ProductSummaryProps) {
                                         className={
                                             isOutOfStock
                                                 ? "bg-red-100 text-red-800 border-red-200"
-                                                : isLow
+                                                : isLowStock
                                                     ? "bg-amber-100 text-amber-800 border-amber-200"
                                                     : "bg-green-100 text-green-800 border-green-200"
                                         }
                                     >
-                                        {isOutOfStock ? "Out of Stock" : isLow ? "Low Stock" : "OK"}
+                                        {isOutOfStock ? "Out of Stock" : product.stockLevel}
                                     </Badge>
                                 </div>
                             </div>
