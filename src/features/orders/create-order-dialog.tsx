@@ -99,14 +99,12 @@ export function CreateOrderDialog({open, onOpenChange, onSuccess}: CreateOrderDi
 
         setLoading(true);
         try {
-            const orderProducts = lines.map((line) => {
-                const product = getProduct(line.productId)!;
-                return {
+            const orderProducts = lines
+                .filter((line) => line.productId)
+                .map((line) => ({
                     product: line.productId,
-                    quantity: line.quantity,
-                    price: product.price,
-                };
-            });
+                    quantity: Math.max(1, Math.floor(line.quantity)),
+                }));
 
             await apiClient.post(API_ENDPOINTS.orders.list, {
                 customerName: customerName.trim(),
