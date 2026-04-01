@@ -86,7 +86,7 @@ export default function DashboardPage() {
 
             <AnalyticsCharts/>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
                 <ProductSummary products={data.productSummary || []}/>
                 <ActivityFeed activities={data.recentActivity || []}/>
             </div>
