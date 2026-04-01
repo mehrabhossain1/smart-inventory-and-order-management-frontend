@@ -12,5 +12,6 @@ export const PATHS = {
         orderDetail: (id: string) => `/dashboard/orders/${id}`,
         restock: "/dashboard/restock",
         activity: "/dashboard/activity",
+        messages: "/dashboard/messages",
     },
 } as const;

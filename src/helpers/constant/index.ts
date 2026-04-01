@@ -52,6 +52,7 @@ export const sidebarLinks = [
         icon: "AlertTriangle",
     },
     { name: "Activity Log", href: PATHS.dashboard.activity, icon: "Activity" },
+    { name: "Messages", href: PATHS.dashboard.messages, icon: "MessageSquare" },
 ];
 
 export const orderStatuses = [

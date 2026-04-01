@@ -13,6 +13,7 @@ import {
     ShoppingCart,
     AlertTriangle,
     Activity,
+    MessageSquare,
     LogOut,
 } from "lucide-react";
 import {Badge} from "@/components/ui/badge";
@@ -25,6 +26,7 @@ const iconMap: Record<string, React.ElementType> = {
     ShoppingCart,
     AlertTriangle,
     Activity,
+    MessageSquare,
 };
 
 export function Sidebar() {

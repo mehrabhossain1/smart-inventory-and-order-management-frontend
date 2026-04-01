@@ -42,5 +42,12 @@ export const API_ENDPOINTS = {
         markAllRead: "/notifications/read-all",
         delete: (id: string) => `/notifications/${id}`,
     },
+    messages: {
+        conversations: "/messages/conversations",
+        contacts: "/messages/contacts",
+        unreadCount: "/messages/unread-count",
+        withContact: (contactId: string) => `/messages/${contactId}`,
+        send: "/messages",
+    },
     ping: "/ping",
 } as const;
