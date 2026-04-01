@@ -1,5 +1,7 @@
 # Smart Inventory & Order Management System - Frontend
 
+![Frontend CI](https://github.com/mehrabhossain1/smart-inventory-and-order-management-frontend/actions/workflows/ci.yml/badge.svg)
+
 A modern, responsive dashboard application for managing products, stock levels, customer orders, and fulfillment workflows with real-time validation and conflict handling.
 
 ## Live URLs
