@@ -7,7 +7,8 @@ import {useTheme} from "next-themes";
 import {useGlobalStore} from "@/store";
 import {useAuthStore} from "@/store/auth-store";
 import {Button} from "@/components/ui/button";
-import {Menu, Sun, Moon} from "lucide-react";
+import {Menu, Sun, Moon, Wifi, WifiOff} from "lucide-react";
+import {useSocket} from "@/shared/providers/socket-provider";
 import {useEffect, useState} from "react";
 
 const pageTitles: Record<string, string> = {
@@ -24,6 +25,7 @@ export function DashboardHeader() {
     const {toggleSidebar} = useGlobalStore();
     const {user} = useAuthStore();
     const {theme, setTheme} = useTheme();
+    const {connected} = useSocket();
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => setMounted(true), []);
@@ -67,6 +69,13 @@ export function DashboardHeader() {
                         )}
                     </Button>
                 )}
+                <div className="hidden sm:flex items-center gap-1.5" title={connected ? "Real-time connected" : "Real-time disconnected"}>
+                    {connected ? (
+                        <Wifi className="size-3.5 text-emerald-500"/>
+                    ) : (
+                        <WifiOff className="size-3.5 text-slate-400"/>
+                    )}
+                </div>
                 <span className="text-sm text-slate-400 hidden sm:block">
                     {user?.email}
                 </span>

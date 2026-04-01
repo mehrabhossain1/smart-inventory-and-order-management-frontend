@@ -3,6 +3,7 @@
 import {useCallback, useEffect, useState} from "react";
 import {apiClient} from "@/lib/api-client";
 import {API_ENDPOINTS} from "@/config/api-endpoints";
+import {useSocketRefresh} from "@/lib/use-socket-refresh";
 import type {Product} from "@/shared/types";
 
 interface UseProductsParams {
@@ -51,6 +52,8 @@ export function useProducts(params: UseProductsParams = {}) {
     useEffect(() => {
         fetchProducts();
     }, [fetchProducts]);
+
+    useSocketRefresh(["stock:updated", "order:created", "order:cancelled", "restock:changed"], fetchProducts);
 
     return {products, total, loading, refetch: fetchProducts};
 }

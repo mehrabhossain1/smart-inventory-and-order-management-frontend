@@ -3,6 +3,7 @@
 import {useCallback, useEffect, useState} from "react";
 import {apiClient} from "@/lib/api-client";
 import {API_ENDPOINTS} from "@/config/api-endpoints";
+import {useSocketRefresh} from "@/lib/use-socket-refresh";
 import type {Order} from "@/shared/types";
 
 interface UseOrdersParams {
@@ -51,6 +52,8 @@ export function useOrders(params: UseOrdersParams = {}) {
     useEffect(() => {
         fetchOrders();
     }, [fetchOrders]);
+
+    useSocketRefresh(["order:created", "order:statusChanged", "order:cancelled"], fetchOrders);
 
     return {orders, total, loading, refetch: fetchOrders};
 }
