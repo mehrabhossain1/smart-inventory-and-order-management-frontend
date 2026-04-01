@@ -8,6 +8,7 @@ import {formatCurrency} from "@/helpers";
 import {StatCard} from "./stat-card";
 import {ProductSummary} from "./product-summary";
 import {ActivityFeed} from "./activity-feed";
+import {AnalyticsCharts} from "./analytics-charts";
 import {Skeleton} from "@/components/ui/skeleton";
 import {
     ShoppingCart,
@@ -82,6 +83,8 @@ export default function DashboardPage() {
                     iconClassName="bg-violet-50 dark:bg-violet-950/30 text-violet-500"
                 />
             </div>
+
+            <AnalyticsCharts/>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <ProductSummary products={data.productSummary || []}/>

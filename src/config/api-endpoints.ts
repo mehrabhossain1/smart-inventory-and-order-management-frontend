@@ -30,6 +30,7 @@ export const API_ENDPOINTS = {
     },
     dashboard: {
         summary: "/dashboard/summary",
+        analytics: "/dashboard/analytics",
     },
     activity: {
         recent: "/activity/recent",
