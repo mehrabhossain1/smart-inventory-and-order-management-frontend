@@ -39,7 +39,7 @@ export function DashboardHeader() {
     const title = pageTitles[pathname] || (pathname.startsWith("/dashboard/orders/") ? "Order Details" : "Dashboard");
 
     return (
-        <header className="h-16 shrink-0 bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-700/50 flex items-center justify-between px-4 lg:px-6 sticky top-0 z-30">
+        <header className="relative h-16 shrink-0 bg-white/80 dark:bg-slate-900/70 backdrop-blur-xl border-b border-slate-200/50 dark:border-white/[0.06] flex items-center justify-between px-4 lg:px-6 sticky top-0 z-30">
             <div className="flex items-center gap-4">
                 <Button
                     variant="ghost"
@@ -52,7 +52,7 @@ export function DashboardHeader() {
                 <Link href="/dashboard" className="flex items-center gap-2.5">
                     <Image src="/icon.svg" alt="Smart Inventory" width={32} height={32} className="rounded-lg"/>
                     <span className="text-lg tracking-tight">
-                        <span className="font-viga text-primary-light">Smart</span>
+                        <span className="font-viga bg-gradient-to-r from-primary-light to-primary-lighter bg-clip-text text-transparent">Smart</span>
                         <span className="font-viga text-slate-800 dark:text-slate-100">Inventory</span>
                     </span>
                 </Link>
@@ -87,10 +87,11 @@ export function DashboardHeader() {
                 <span className="text-sm text-slate-400 hidden sm:block">
                     {user?.email}
                 </span>
-                <div className="size-9 rounded-full bg-gradient-to-br from-primary-light to-purple-700 flex items-center justify-center text-white font-semibold text-sm shadow-sm">
+                <div className="size-9 rounded-full bg-gradient-to-br from-primary-light to-purple-700 flex items-center justify-center text-white font-semibold text-sm shadow-sm ring-2 ring-primary-light/20">
                     {user?.username?.charAt(0).toUpperCase() || "U"}
                 </div>
             </div>
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-light/20 to-transparent" />
         </header>
     );
 }

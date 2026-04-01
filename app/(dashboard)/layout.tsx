@@ -9,7 +9,7 @@ export default function DashboardLayout({children}: { children: React.ReactNode 
     return (
         <AuthProvider>
             <SocketProvider>
-                <div className="h-screen flex flex-col overflow-hidden bg-[#f8fafc] dark:bg-slate-950">
+                <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-slate-50 via-[#f8fafc] to-slate-100/50 dark:from-[#0a0f1e] dark:via-slate-950 dark:to-[#0d1225]">
                     <DashboardHeader/>
                     <div className="flex flex-1 min-h-0">
                         <Sidebar/>

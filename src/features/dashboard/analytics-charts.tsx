@@ -58,8 +58,8 @@ export function AnalyticsCharts() {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Revenue Trend */}
-            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700/50 p-6 shadow-sm">
-                <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 uppercase tracking-wider mb-5">Revenue Trend (7 Days)</h3>
+            <div className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-sm rounded-2xl border border-white/60 dark:border-slate-700/30 p-6 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-shadow duration-300">
+                <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 tracking-tight mb-5 flex items-center gap-2"><span className="size-2 rounded-full bg-primary-light/60" />Revenue Trend (7 Days)</h3>
                 <ResponsiveContainer width="100%" height={240}>
                     <LineChart data={data.revenueByDay}>
                         <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
@@ -76,8 +76,8 @@ export function AnalyticsCharts() {
             </div>
 
             {/* Orders by Status */}
-            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700/50 p-6 shadow-sm">
-                <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 uppercase tracking-wider mb-5">Orders by Status</h3>
+            <div className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-sm rounded-2xl border border-white/60 dark:border-slate-700/30 p-6 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-shadow duration-300">
+                <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 tracking-tight mb-5 flex items-center gap-2"><span className="size-2 rounded-full bg-primary-light/60" />Orders by Status</h3>
                 <div className="flex items-center gap-6">
                     <ResponsiveContainer width="50%" height={240}>
                         <PieChart>
@@ -115,8 +115,8 @@ export function AnalyticsCharts() {
             </div>
 
             {/* Top Selling Products */}
-            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700/50 p-6 shadow-sm">
-                <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 uppercase tracking-wider mb-5">Top Selling Products</h3>
+            <div className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-sm rounded-2xl border border-white/60 dark:border-slate-700/30 p-6 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-shadow duration-300">
+                <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 tracking-tight mb-5 flex items-center gap-2"><span className="size-2 rounded-full bg-primary-light/60" />Top Selling Products</h3>
                 {data.topProducts.length === 0 ? (
                     <p className="text-sm text-slate-400">No sales data yet.</p>
                 ) : (
@@ -136,8 +136,8 @@ export function AnalyticsCharts() {
             </div>
 
             {/* Stock Level Overview */}
-            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700/50 p-6 shadow-sm">
-                <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 uppercase tracking-wider mb-5">Stock Levels</h3>
+            <div className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-sm rounded-2xl border border-white/60 dark:border-slate-700/30 p-6 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-shadow duration-300">
+                <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 tracking-tight mb-5 flex items-center gap-2"><span className="size-2 rounded-full bg-primary-light/60" />Stock Levels</h3>
                 <ResponsiveContainer width="100%" height={240}>
                     <BarChart data={data.stockOverview} margin={{bottom: 40}}>
                         <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />

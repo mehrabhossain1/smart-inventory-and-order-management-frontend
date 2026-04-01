@@ -16,8 +16,8 @@ interface ProductSummaryProps {
 
 export function ProductSummary({products}: ProductSummaryProps) {
     return (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700/50 p-6 shadow-sm">
-            <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 uppercase tracking-wider mb-5">Product Stock Summary</h3>
+        <div className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-sm rounded-2xl border border-white/60 dark:border-slate-700/30 p-6 shadow-[var(--shadow-card)]">
+            <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 tracking-tight mb-5 flex items-center gap-2"><span className="size-2 rounded-full bg-primary-light/60" />Product Stock Summary</h3>
             {products.length === 0 ? (
                 <p className="text-sm text-slate-400 dark:text-slate-500">No products found.</p>
             ) : (
