@@ -5,15 +5,16 @@ export interface AuthSlide {
 }
 
 export interface User {
-    _id: string;
+    id?: string;
+    _id?: string;
     username: string;
     email: string;
     role: "admin" | "manager";
     fullName?: string;
     phone?: string;
     address?: string;
-    createdAt: string;
-    updatedAt: string;
+    createdAt?: string;
+    updatedAt?: string;
 }
 
 export interface LoginResponse {

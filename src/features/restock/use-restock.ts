@@ -12,10 +12,10 @@ export function useRestock() {
     const fetchQueue = useCallback(async () => {
         setLoading(true);
         try {
-            const data = await apiClient.get<{ items: RestockQueueItem[]; restockQueue: RestockQueueItem[] }>(
+            const data = await apiClient.get<{ queue: RestockQueueItem[] }>(
                 API_ENDPOINTS.restock.queue
             );
-            setQueue(data.items || data.restockQueue || []);
+            setQueue(data.queue || []);
         } catch (err) {
             console.error("Failed to fetch restock queue:", err);
         } finally {

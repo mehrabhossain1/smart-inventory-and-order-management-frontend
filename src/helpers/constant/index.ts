@@ -1,5 +1,5 @@
-import {PATHS} from "@/config/paths";
-import {AuthSlide} from "@/shared/types";
+import { PATHS } from "@/config/paths";
+import { AuthSlide } from "@/shared/types";
 
 export const loginSlides: AuthSlide[] = [
     {
@@ -32,12 +32,20 @@ export const registerSlides: AuthSlide[] = [
 ];
 
 export const sidebarLinks = [
-    {name: "Dashboard", href: PATHS.dashboard.home, icon: "LayoutDashboard"},
-    {name: "Products", href: PATHS.dashboard.products, icon: "Package"},
-    {name: "Categories", href: PATHS.dashboard.categories, icon: "FolderTree"},
-    {name: "Orders", href: PATHS.dashboard.orders, icon: "ShoppingCart"},
-    {name: "Restock Queue", href: PATHS.dashboard.restock, icon: "AlertTriangle"},
-    {name: "Activity Log", href: PATHS.dashboard.activity, icon: "Activity"},
+    { name: "Dashboard", href: PATHS.dashboard.home, icon: "LayoutDashboard" },
+    {
+        name: "Categories",
+        href: PATHS.dashboard.categories,
+        icon: "FolderTree",
+    },
+    { name: "Products", href: PATHS.dashboard.products, icon: "Package" },
+    { name: "Orders", href: PATHS.dashboard.orders, icon: "ShoppingCart" },
+    {
+        name: "Restock Queue",
+        href: PATHS.dashboard.restock,
+        icon: "AlertTriangle",
+    },
+    { name: "Activity Log", href: PATHS.dashboard.activity, icon: "Activity" },
 ];
 
 export const orderStatuses = [

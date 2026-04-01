@@ -12,8 +12,8 @@ export default function ActivityPage() {
 
     useEffect(() => {
         apiClient
-            .get<{ activities: ActivityLog[] }>(API_ENDPOINTS.activity.recent, {limit: 20})
-            .then((data) => setActivities(data.activities || []))
+            .get<{ logs: ActivityLog[] }>(API_ENDPOINTS.activity.recent, {limit: 20})
+            .then((data) => setActivities(data.logs || []))
             .catch(console.error)
             .finally(() => setLoading(false));
     }, []);
