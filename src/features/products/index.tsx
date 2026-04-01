@@ -2,7 +2,7 @@
 
 import {useState} from "react";
 import {Button} from "@/components/ui/button";
-import {Plus, ChevronLeft, ChevronRight} from "lucide-react";
+import {Plus, ChevronLeft, ChevronRight, Download} from "lucide-react";
 import {useDebounce} from "@/lib/use-debounce";
 import {useAuthStore} from "@/store/auth-store";
 import {useProducts} from "./use-products";
@@ -10,6 +10,8 @@ import {useCategories} from "@/features/categories/use-categories";
 import {ProductList} from "./product-list";
 import {ProductFilters} from "./product-filters";
 import {ProductFormDialog} from "./product-form-dialog";
+import {downloadCSV} from "@/lib/export-csv";
+import {formatCurrency} from "@/helpers";
 import type {Product} from "@/shared/types";
 
 export default function ProductsPage() {
@@ -51,12 +53,31 @@ export default function ProductsPage() {
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <p className="text-sm text-slate-400 dark:text-slate-500">{total} products</p>
-                {isAdmin && (
-                    <Button onClick={handleAdd} className="bg-primary-light hover:bg-primary-light/90 shadow-sm shadow-primary-light/20 rounded-xl">
-                        <Plus className="size-4 mr-2"/>
-                        Add Product
+                <div className="flex items-center gap-2">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="rounded-xl"
+                        disabled={products.length === 0}
+                        onClick={() => downloadCSV(products.map(p => ({
+                            Name: p.name,
+                            Category: typeof p.category === "object" ? p.category.name : "—",
+                            Price: formatCurrency(p.price),
+                            Quantity: p.quantity,
+                            Threshold: p.minimumStockThreshold,
+                            Status: p.status,
+                        })), "products")}
+                    >
+                        <Download className="size-3.5 mr-1.5"/>
+                        CSV
                     </Button>
-                )}
+                    {isAdmin && (
+                        <Button onClick={handleAdd} className="bg-primary-light hover:bg-primary-light/90 shadow-sm shadow-primary-light/20 rounded-xl">
+                            <Plus className="size-4 mr-2"/>
+                            Add Product
+                        </Button>
+                    )}
+                </div>
             </div>
 
             <ProductFilters

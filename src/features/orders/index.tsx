@@ -2,11 +2,13 @@
 
 import {useState} from "react";
 import {Button} from "@/components/ui/button";
-import {Plus, ChevronLeft, ChevronRight} from "lucide-react";
+import {Plus, ChevronLeft, ChevronRight, Download} from "lucide-react";
 import {useOrders} from "./use-orders";
 import {OrderList} from "./order-list";
 import {OrderFilters} from "./order-filters";
 import {CreateOrderDialog} from "./create-order-dialog";
+import {downloadCSV} from "@/lib/export-csv";
+import {formatCurrency, formatDate} from "@/helpers";
 
 export default function OrdersPage() {
     const [status, setStatus] = useState("all");
@@ -29,10 +31,29 @@ export default function OrdersPage() {
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <p className="text-sm text-slate-400 dark:text-slate-500">{total} orders</p>
-                <Button onClick={() => setDialogOpen(true)} className="bg-primary-light hover:bg-primary-light/90 shadow-sm shadow-primary-light/20 rounded-xl">
-                    <Plus className="size-4 mr-2"/>
-                    New Order
-                </Button>
+                <div className="flex items-center gap-2">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="rounded-xl"
+                        disabled={orders.length === 0}
+                        onClick={() => downloadCSV(orders.map(o => ({
+                            OrderID: o._id.slice(-6),
+                            Customer: o.customerName,
+                            Items: o.products.length,
+                            Total: formatCurrency(o.totalPrice),
+                            Status: o.status,
+                            Date: formatDate(o.createdAt),
+                        })), "orders")}
+                    >
+                        <Download className="size-3.5 mr-1.5"/>
+                        CSV
+                    </Button>
+                    <Button onClick={() => setDialogOpen(true)} className="bg-primary-light hover:bg-primary-light/90 shadow-sm shadow-primary-light/20 rounded-xl">
+                        <Plus className="size-4 mr-2"/>
+                        New Order
+                    </Button>
+                </div>
             </div>
 
             <OrderFilters

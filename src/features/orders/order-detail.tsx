@@ -11,7 +11,8 @@ import {
     AlertDialogDescription, AlertDialogFooter, AlertDialogHeader,
     AlertDialogTitle, AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import {ArrowLeft, Ban} from "lucide-react";
+import {ArrowLeft, Ban, FileDown} from "lucide-react";
+import {downloadOrderInvoice} from "@/lib/export-pdf";
 import {apiClient} from "@/lib/api-client";
 import {API_ENDPOINTS} from "@/config/api-endpoints";
 import type {Order} from "@/shared/types";
@@ -97,15 +98,26 @@ export default function OrderDetailPage({orderId}: { orderId: string }) {
 
     return (
         <div className="space-y-6">
-            <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => router.push(PATHS.dashboard.orders)}
-                className="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 rounded-xl"
-            >
-                <ArrowLeft className="size-4 mr-1"/>
-                Back to Orders
-            </Button>
+            <div className="flex items-center justify-between">
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => router.push(PATHS.dashboard.orders)}
+                    className="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 rounded-xl"
+                >
+                    <ArrowLeft className="size-4 mr-1"/>
+                    Back to Orders
+                </Button>
+                <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => downloadOrderInvoice(order)}
+                    className="rounded-xl"
+                >
+                    <FileDown className="size-3.5 mr-1.5"/>
+                    Download Invoice
+                </Button>
+            </div>
 
             <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700/50 shadow-sm p-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
