@@ -35,12 +35,14 @@ async function request<T>(
     });
 
     if (res.status === 401) {
-        if (typeof window !== "undefined") {
+        const isAuthEndpoint = path.startsWith("/auth/");
+        if (!isAuthEndpoint && typeof window !== "undefined") {
             localStorage.removeItem("token");
             localStorage.removeItem("user");
             window.location.href = "/login";
         }
-        throw new ApiError("Unauthorized", 401);
+        const errData = await res.json().catch(() => ({}));
+        throw new ApiError(errData.message || "Unauthorized", 401);
     }
 
     const data = await res.json().catch(() => ({}));
