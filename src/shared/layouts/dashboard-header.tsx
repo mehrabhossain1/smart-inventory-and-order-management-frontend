@@ -10,6 +10,7 @@ import {Button} from "@/components/ui/button";
 import {Menu, Sun, Moon, Wifi, WifiOff} from "lucide-react";
 import {useSocket} from "@/shared/providers/socket-provider";
 import {NotificationBell} from "@/features/notifications/notification-bell";
+import {MessageBadge} from "@/features/messages/message-badge";
 import {useEffect, useState} from "react";
 
 const pageTitles: Record<string, string> = {
@@ -71,6 +72,7 @@ export function DashboardHeader() {
                         )}
                     </Button>
                 )}
+                <MessageBadge/>
                 <NotificationBell/>
                 <div className="hidden sm:flex items-center gap-1.5" title={connected ? "Real-time connected" : "Real-time disconnected"}>
                     {connected ? (

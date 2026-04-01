@@ -4,6 +4,7 @@ import {useEffect, useState, useRef, useCallback} from "react";
 import {apiClient} from "@/lib/api-client";
 import {API_ENDPOINTS} from "@/config/api-endpoints";
 import {useAuthStore} from "@/store/auth-store";
+import {useMessageStore} from "@/store/message-store";
 import {getSocket} from "@/lib/socket";
 import {cn} from "@/lib/utils";
 import {formatRelativeTime} from "@/helpers";
@@ -37,6 +38,7 @@ interface Conversation {
 
 export default function MessagesPage() {
     const {user} = useAuthStore();
+    const {clearUnreadFor} = useMessageStore();
     const [conversations, setConversations] = useState<Conversation[]>([]);
     const [contacts, setContacts] = useState<Contact[]>([]);
     const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
@@ -194,10 +196,11 @@ export default function MessagesPage() {
     const selectContact = (contact: Contact) => {
         setSelectedContact(contact);
         setMessages([]);
-        // Clear unread for this contact
+        // Clear unread for this contact locally + re-sync global count
         setConversations((prev) =>
             prev.map((c) => c.user._id === contact._id ? {...c, unreadCount: 0} : c)
         );
+        clearUnreadFor(contact._id);
     };
 
     // Merge contacts into conversation list (show contacts without conversations too)

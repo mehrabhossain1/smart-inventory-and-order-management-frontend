@@ -5,6 +5,7 @@ import {usePathname} from "next/navigation";
 import {cn} from "@/lib/utils";
 import {useGlobalStore} from "@/store";
 import {useAuthStore} from "@/store/auth-store";
+import {useMessageStore} from "@/store/message-store";
 import {sidebarLinks} from "@/helpers/constant";
 import {
     LayoutDashboard,
@@ -33,6 +34,7 @@ export function Sidebar() {
     const pathname = usePathname();
     const {sidebarOpen, setSidebarOpen} = useGlobalStore();
     const {user, logout} = useAuthStore();
+    const {unreadCount: unreadMessages} = useMessageStore();
 
     return (
         <>
@@ -56,6 +58,9 @@ export function Sidebar() {
                             pathname === link.href ||
                             (link.href !== "/dashboard" && pathname.startsWith(link.href));
 
+                        const isMessages = link.icon === "MessageSquare";
+                        const showBadge = isMessages && unreadMessages > 0 && !isActive;
+
                         return (
                             <Link
                                 key={link.href}
@@ -69,7 +74,12 @@ export function Sidebar() {
                                 )}
                             >
                                 {Icon && <Icon className={cn("size-[18px]", isActive ? "text-white" : "text-slate-400 dark:text-slate-500")}/>}
-                                {link.name}
+                                <span className="flex-1">{link.name}</span>
+                                {showBadge && (
+                                    <span className="min-w-[20px] h-5 px-1.5 flex items-center justify-center rounded-full bg-primary-light text-white text-[10px] font-bold leading-none">
+                                        {unreadMessages > 99 ? "99+" : unreadMessages}
+                                    </span>
+                                )}
                             </Link>
                         );
                     })}
