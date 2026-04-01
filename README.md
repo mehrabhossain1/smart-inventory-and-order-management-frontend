@@ -12,7 +12,7 @@ A modern, responsive dashboard application for managing products, stock levels, 
 
 | Role    | Email             | Password   |
 | ------- | ----------------- | ---------- |
-| Admin   | `demo@admin.com`  | `demo1234` |
+| Admin   | `demo@admin.com`  | `demo123`  |
 
 ## Features
 

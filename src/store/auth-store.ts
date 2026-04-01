@@ -72,7 +72,7 @@ export const useAuthStore = create<AuthState>((set) => ({
         try {
             const data = await apiClient.post<LoginResponse>(
                 API_ENDPOINTS.auth.login,
-                {email: "demo@admin.com", password: "demo1234"}
+                {email: "demo@admin.com", password: "demo123"}
             );
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", JSON.stringify(data.user));

@@ -74,5 +74,5 @@ export const priorityColors: Record<string, string> = {
 
 export const demoCredentials = {
     email: "demo@admin.com",
-    password: "demo1234",
+    password: "demo123",
 };
