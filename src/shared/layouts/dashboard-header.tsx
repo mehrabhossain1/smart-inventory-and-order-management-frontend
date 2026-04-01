@@ -35,10 +35,11 @@ export function DashboardHeader() {
                 >
                     <Menu className="size-5"/>
                 </Button>
-                <Link href="/dashboard" className="flex items-center gap-2">
-                    <Image src="/icon.svg" alt="Smart Inventory" width={28} height={28} className="rounded"/>
-                    <span className="text-lg font-viga text-foreground">
-                        Smart Inventory
+                <Link href="/dashboard" className="flex items-center gap-2.5">
+                    <Image src="/icon.svg" alt="Smart Inventory" width={32} height={32} className="rounded-lg"/>
+                    <span className="text-lg tracking-tight">
+                        <span className="font-viga text-primary-light">Smart</span>
+                        <span className="font-viga text-foreground">Inventory</span>
                     </span>
                 </Link>
                 <div className="hidden sm:block h-6 w-px bg-gray-200"/>

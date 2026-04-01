@@ -34,10 +34,11 @@ export function AuthLayout({children, slides}: AuthLayoutProps) {
                     <div className="absolute inset-0 bg-gradient-to-br from-primary-light/30 via-fill-background/40 to-primary/80"/>
 
                     <div className="absolute top-6 left-6 z-20">
-                        <Link href="/" className="flex items-center space-x-2">
-                            <Image src="/icon.svg" alt="Smart Inventory" width={32} height={32} className="rounded"/>
-                            <span className="text-xl font-viga text-white hidden sm:inline">
-                                Smart Inventory
+                        <Link href="/" className="flex items-center gap-2.5">
+                            <Image src="/icon.svg" alt="Smart Inventory" width={36} height={36} className="rounded-lg"/>
+                            <span className="text-xl tracking-tight hidden sm:inline">
+                                <span className="font-viga text-white">Smart</span>
+                                <span className="font-viga text-white/70">Inventory</span>
                             </span>
                         </Link>
                     </div>

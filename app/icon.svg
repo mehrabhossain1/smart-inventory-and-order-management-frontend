@@ -1,8 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <rect width="32" height="32" rx="8" fill="#8000ff"/>
-  <path d="M10 10h12a1.5 1.5 0 011.5 1.5v9a1.5 1.5 0 01-1.5 1.5H10a1.5 1.5 0 01-1.5-1.5v-9A1.5 1.5 0 0110 10z" stroke="white" stroke-width="1.5" fill="none"/>
-  <path d="M13 10V8.5a3 3 0 016 0V10" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <line x1="11" y1="15" x2="21" y2="15" stroke="white" stroke-width="1" opacity="0.5"/>
-  <line x1="11" y1="18" x2="21" y2="18" stroke="white" stroke-width="1" opacity="0.5"/>
-  <line x1="11" y1="21" x2="17" y2="21" stroke="white" stroke-width="1" opacity="0.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+  <rect width="40" height="40" rx="10" fill="url(#g1)"/>
+
+  <!-- 3D Box shape -->
+  <path d="M20 8L9 14v12l11 6 11-6V14L20 8z" fill="none" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M9 14l11 6 11-6" fill="none" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M20 20v12" stroke="white" stroke-width="1.8"/>
+
+  <!-- Left face fill -->
+  <path d="M9 14l11 6v12l-11-6V14z" fill="white" opacity="0.1"/>
+
+  <!-- Smart signal arcs -->
+  <path d="M28 10.5a5 5 0 012.2 2.2" stroke="#FFB835" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  <path d="M30.5 8.5a8 8 0 013.5 3.5" stroke="#FFB835" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.55"/>
+
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="40" y2="40">
+      <stop offset="0%" stop-color="#9333ea"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
+    </linearGradient>
+  </defs>
 </svg>
