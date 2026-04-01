@@ -69,12 +69,17 @@ export function Sidebar() {
                                 href={link.href}
                                 onClick={() => setSidebarOpen(false)}
                                 className={cn(
-                                    "flex items-center gap-3 px-3 py-2.5 rounded-xl text-[0.85rem] font-medium transition-all duration-200",
+                                    "relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-[0.85rem] font-medium transition-all duration-200",
                                     isActive
                                         ? "bg-primary-light text-white shadow-md shadow-primary-light/25"
                                         : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100"
                                 )}
                             >
+                                {link.isNew && (
+                                    <span className="absolute -top-1.5 -left-1 px-1.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[8px] font-bold leading-none shadow-sm">
+                                        New
+                                    </span>
+                                )}
                                 {Icon && <Icon className={cn("size-[18px]", isActive ? "text-white" : "text-slate-400 dark:text-slate-500")}/>}
                                 <span className="flex-1">{link.name}</span>
                                 {showBadge && (
