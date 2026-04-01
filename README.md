@@ -4,9 +4,9 @@ A modern, responsive dashboard application for managing products, stock levels, 
 
 ## Live URLs
 
-- **Frontend**: [Deployed URL here]
-- **Backend API**: [https://stock-sales-management-backend.onrender.com](https://stock-sales-management-backend.onrender.com)
-- **API Docs**: [https://stock-sales-management-backend.onrender.com/api-docs](https://stock-sales-management-backend.onrender.com/api-docs)
+- **Frontend**: [https://smart-inventory-and-order-managemen-mu.vercel.app](https://smart-inventory-and-order-managemen-mu.vercel.app)
+- **Backend API**: [https://smart-inventory-and-order-management.onrender.com](https://smart-inventory-and-order-management.onrender.com)
+- **API Docs**: [https://smart-inventory-and-order-management.onrender.com/api-docs](https://smart-inventory-and-order-management.onrender.com/api-docs)
 
 ## Demo Credentials
 

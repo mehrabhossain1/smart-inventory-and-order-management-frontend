@@ -1,5 +1,5 @@
 export const API_BASE_URL =
-    process.env.NEXT_PUBLIC_API_URL || "https://stock-sales-management-backend.onrender.com/api";
+    process.env.NEXT_PUBLIC_API_URL || "https://smart-inventory-and-order-management.onrender.com/api";
 
 export const API_ENDPOINTS = {
     auth: {
