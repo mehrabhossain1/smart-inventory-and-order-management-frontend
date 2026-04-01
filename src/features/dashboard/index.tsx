@@ -46,7 +46,7 @@ export default function DashboardPage() {
     }
 
     if (!data) {
-        return <p className="text-slate-400">Failed to load dashboard data.</p>;
+        return <p className="text-slate-400 dark:text-slate-500">Failed to load dashboard data.</p>;
     }
 
     return (
@@ -61,25 +61,25 @@ export default function DashboardPage() {
                     title="Pending"
                     value={data.ordersByStatus.pending}
                     icon={<Clock className="size-5"/>}
-                    iconClassName="bg-amber-50 text-amber-500"
+                    iconClassName="bg-amber-50 dark:bg-amber-950/30 text-amber-500"
                 />
                 <StatCard
                     title="Delivered"
                     value={data.ordersByStatus.delivered}
                     icon={<CheckCircle className="size-5"/>}
-                    iconClassName="bg-emerald-50 text-emerald-500"
+                    iconClassName="bg-emerald-50 dark:bg-emerald-950/30 text-emerald-500"
                 />
                 <StatCard
                     title="Low Stock"
                     value={data.lowStockItemsCount}
                     icon={<AlertTriangle className="size-5"/>}
-                    iconClassName="bg-red-50 text-red-500"
+                    iconClassName="bg-red-50 dark:bg-red-950/30 text-red-500"
                 />
                 <StatCard
                     title="Revenue Today"
                     value={formatCurrency(data.revenueToday)}
                     icon={<DollarSign className="size-5"/>}
-                    iconClassName="bg-violet-50 text-violet-500"
+                    iconClassName="bg-violet-50 dark:bg-violet-950/30 text-violet-500"
                 />
             </div>
 

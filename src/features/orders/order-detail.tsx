@@ -89,7 +89,7 @@ export default function OrderDetailPage({orderId}: { orderId: string }) {
     }
 
     if (!order) {
-        return <p className="text-slate-400">Order not found.</p>;
+        return <p className="text-slate-400 dark:text-slate-500">Order not found.</p>;
     }
 
     const nextStatuses = statusTransitions[order.status] || [];
@@ -101,60 +101,60 @@ export default function OrderDetailPage({orderId}: { orderId: string }) {
                 variant="ghost"
                 size="sm"
                 onClick={() => router.push(PATHS.dashboard.orders)}
-                className="text-slate-400 hover:text-slate-600 rounded-xl"
+                className="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 rounded-xl"
             >
                 <ArrowLeft className="size-4 mr-1"/>
                 Back to Orders
             </Button>
 
-            <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700/50 shadow-sm p-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                     <div>
-                        <h2 className="text-lg font-semibold text-slate-800">
+                        <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-200">
                             Order #{order._id.slice(-6)}
                         </h2>
-                        <p className="text-sm text-slate-400 mt-0.5">{formatDateTime(order.createdAt)}</p>
+                        <p className="text-sm text-slate-400 dark:text-slate-500 mt-0.5">{formatDateTime(order.createdAt)}</p>
                     </div>
                     <OrderStatusBadge status={order.status}/>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                    <div className="bg-slate-50 rounded-xl p-4">
-                        <p className="text-xs text-slate-400 uppercase tracking-wider">Customer</p>
-                        <p className="font-medium text-slate-700 mt-1">{order.customerName}</p>
+                    <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4">
+                        <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider">Customer</p>
+                        <p className="font-medium text-slate-700 dark:text-slate-300 mt-1">{order.customerName}</p>
                     </div>
-                    <div className="bg-slate-50 rounded-xl p-4">
-                        <p className="text-xs text-slate-400 uppercase tracking-wider">Total</p>
-                        <p className="font-bold text-lg text-slate-800 mt-1">{formatCurrency(order.totalPrice)}</p>
+                    <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4">
+                        <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider">Total</p>
+                        <p className="font-bold text-lg text-slate-800 dark:text-slate-200 mt-1">{formatCurrency(order.totalPrice)}</p>
                     </div>
-                    <div className="bg-slate-50 rounded-xl p-4">
-                        <p className="text-xs text-slate-400 uppercase tracking-wider">Created By</p>
-                        <p className="font-medium text-slate-700 mt-1">
+                    <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4">
+                        <p className="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider">Created By</p>
+                        <p className="font-medium text-slate-700 dark:text-slate-300 mt-1">
                             {typeof order.createdBy === "object" ? order.createdBy.username : "—"}
                         </p>
                     </div>
                 </div>
 
-                <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Order Items</h3>
-                <div className="rounded-xl border border-slate-100 overflow-x-auto">
+                <h3 className="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-3">Order Items</h3>
+                <div className="rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-x-auto">
                     <Table>
                         <TableHeader>
-                            <TableRow className="bg-slate-50/50 hover:bg-slate-50/50">
-                                <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Product</TableHead>
-                                <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Quantity</TableHead>
-                                <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Unit Price</TableHead>
-                                <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Subtotal</TableHead>
+                            <TableRow className="bg-slate-50/50 dark:bg-slate-800/30 hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+                                <TableHead className="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">Product</TableHead>
+                                <TableHead className="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">Quantity</TableHead>
+                                <TableHead className="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">Unit Price</TableHead>
+                                <TableHead className="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">Subtotal</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             {order.products.map((item, i) => {
                                 const productName = typeof item.product === "object" ? item.product.name : "Product";
                                 return (
-                                    <TableRow key={i} className="hover:bg-slate-50/50 transition-colors">
-                                        <TableCell className="font-medium text-slate-700">{productName}</TableCell>
-                                        <TableCell className="tabular-nums text-slate-500">{item.quantity}</TableCell>
-                                        <TableCell className="tabular-nums text-slate-500">{formatCurrency(item.price)}</TableCell>
-                                        <TableCell className="tabular-nums font-medium text-slate-600">{formatCurrency(item.price * item.quantity)}</TableCell>
+                                    <TableRow key={i} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                        <TableCell className="font-medium text-slate-700 dark:text-slate-300">{productName}</TableCell>
+                                        <TableCell className="tabular-nums text-slate-500 dark:text-slate-400">{item.quantity}</TableCell>
+                                        <TableCell className="tabular-nums text-slate-500 dark:text-slate-400">{formatCurrency(item.price)}</TableCell>
+                                        <TableCell className="tabular-nums font-medium text-slate-600 dark:text-slate-400">{formatCurrency(item.price * item.quantity)}</TableCell>
                                     </TableRow>
                                 );
                             })}
@@ -164,8 +164,8 @@ export default function OrderDetailPage({orderId}: { orderId: string }) {
             </div>
 
             {(nextStatuses.length > 0 || canCancel) && (
-                <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
-                    <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Actions</h3>
+                <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700/50 shadow-sm p-6">
+                    <h3 className="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-4">Actions</h3>
                     <div className="flex flex-wrap gap-3">
                         {nextStatuses.map((status) => (
                             <Button
@@ -181,7 +181,7 @@ export default function OrderDetailPage({orderId}: { orderId: string }) {
                             <AlertDialog>
                                 <AlertDialogTrigger asChild>
                                     <Button variant="outline" disabled={actionLoading}
-                                            className="text-red-500 border-red-200 hover:bg-red-50 rounded-xl">
+                                            className="text-red-500 border-red-200 dark:border-red-800 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-xl">
                                         <Ban className="size-4 mr-1"/>
                                         Cancel Order
                                     </Button>

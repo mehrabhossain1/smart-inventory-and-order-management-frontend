@@ -49,30 +49,30 @@ export function RestockList({queue, loading, isAdmin, onRestock, onRefresh}: Res
 
     if (queue.length === 0) {
         return (
-            <div className="text-center py-16 text-slate-400 bg-white rounded-2xl border border-slate-100">
+            <div className="text-center py-16 text-slate-400 dark:text-slate-500 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700/50">
                 <p>No items in the restock queue. All products are well-stocked!</p>
             </div>
         );
     }
 
     return (
-        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-x-auto">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700/50 shadow-sm overflow-x-auto">
             <Table>
                 <TableHeader>
-                    <TableRow className="bg-slate-50/50 hover:bg-slate-50/50">
-                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Product</TableHead>
-                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Stock</TableHead>
-                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Threshold</TableHead>
-                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Priority</TableHead>
-                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold w-40">Actions</TableHead>
+                    <TableRow className="bg-slate-50/50 dark:bg-slate-800/30 hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">Product</TableHead>
+                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">Stock</TableHead>
+                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">Threshold</TableHead>
+                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">Priority</TableHead>
+                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold w-40">Actions</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {queue.map((item) => (
-                        <TableRow key={item._id} className="hover:bg-slate-50/50 transition-colors">
-                            <TableCell className="font-medium text-slate-700">{item.product.name}</TableCell>
-                            <TableCell className="tabular-nums font-medium text-slate-600">{item.currentStock}</TableCell>
-                            <TableCell className="tabular-nums text-slate-400">{item.threshold}</TableCell>
+                        <TableRow key={item._id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                            <TableCell className="font-medium text-slate-700 dark:text-slate-300">{item.product.name}</TableCell>
+                            <TableCell className="tabular-nums font-medium text-slate-600 dark:text-slate-400">{item.currentStock}</TableCell>
+                            <TableCell className="tabular-nums text-slate-400 dark:text-slate-500">{item.threshold}</TableCell>
                             <TableCell>
                                 <Badge variant="outline" className={`text-[11px] font-medium px-2.5 ${priorityColors[item.priority] || ""}`}>
                                     {item.priority}
@@ -95,7 +95,7 @@ export function RestockList({queue, loading, isAdmin, onRestock, onRefresh}: Res
                                         <AlertDialog>
                                             <AlertDialogTrigger asChild>
                                                 <Button variant="ghost" size="icon"
-                                                        className="size-8 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50">
+                                                        className="size-8 rounded-lg text-slate-400 dark:text-slate-500 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30">
                                                     <Trash2 className="size-3.5"/>
                                                 </Button>
                                             </AlertDialogTrigger>

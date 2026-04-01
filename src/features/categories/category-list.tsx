@@ -48,27 +48,27 @@ export function CategoryList({categories, loading, isAdmin, onEdit, onRefresh}: 
 
     if (categories.length === 0) {
         return (
-            <div className="text-center py-16 text-slate-400 bg-white rounded-2xl border border-slate-100">
+            <div className="text-center py-16 text-slate-400 dark:text-slate-500 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700/50">
                 <p>No categories found. Create one to get started.</p>
             </div>
         );
     }
 
     return (
-        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700/50 shadow-sm overflow-hidden">
             <Table>
                 <TableHeader>
-                    <TableRow className="bg-slate-50/50 hover:bg-slate-50/50">
-                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Name</TableHead>
-                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Created</TableHead>
-                        {isAdmin && <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold w-24">Actions</TableHead>}
+                    <TableRow className="bg-slate-50/50 dark:bg-slate-800/30 hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">Name</TableHead>
+                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold">Created</TableHead>
+                        {isAdmin && <TableHead className="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500 font-semibold w-24">Actions</TableHead>}
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {categories.map((category) => (
-                        <TableRow key={category._id} className="hover:bg-slate-50/50 transition-colors">
-                            <TableCell className="font-medium text-slate-700">{category.name}</TableCell>
-                            <TableCell className="text-slate-400 text-sm">{formatDate(category.createdAt)}</TableCell>
+                        <TableRow key={category._id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                            <TableCell className="font-medium text-slate-700 dark:text-slate-300">{category.name}</TableCell>
+                            <TableCell className="text-slate-400 dark:text-slate-500 text-sm">{formatDate(category.createdAt)}</TableCell>
                             {isAdmin && (
                                 <TableCell>
                                     <div className="flex items-center gap-1">
@@ -76,14 +76,14 @@ export function CategoryList({categories, loading, isAdmin, onEdit, onRefresh}: 
                                             variant="ghost"
                                             size="icon"
                                             onClick={() => onEdit(category)}
-                                            className="size-8 rounded-lg text-slate-400 hover:text-primary-light hover:bg-primary-light/5"
+                                            className="size-8 rounded-lg text-slate-400 dark:text-slate-500 hover:text-primary-light hover:bg-primary-light/5"
                                         >
                                             <Pencil className="size-3.5"/>
                                         </Button>
                                         <AlertDialog>
                                             <AlertDialogTrigger asChild>
                                                 <Button variant="ghost" size="icon"
-                                                        className="size-8 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50">
+                                                        className="size-8 rounded-lg text-slate-400 dark:text-slate-500 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30">
                                                     <Trash2 className="size-3.5"/>
                                                 </Button>
                                             </AlertDialogTrigger>

@@ -50,7 +50,7 @@ export default function ProductsPage() {
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <p className="text-sm text-slate-400">{total} products</p>
+                <p className="text-sm text-slate-400 dark:text-slate-500">{total} products</p>
                 {isAdmin && (
                     <Button onClick={handleAdd} className="bg-primary-light hover:bg-primary-light/90 shadow-sm shadow-primary-light/20 rounded-xl">
                         <Plus className="size-4 mr-2"/>
@@ -88,7 +88,7 @@ export default function ProductsPage() {
                     >
                         <ChevronLeft className="size-4"/>
                     </Button>
-                    <span className="text-sm text-slate-500 tabular-nums px-3">
+                    <span className="text-sm text-slate-500 dark:text-slate-400 tabular-nums px-3">
                         {page} / {totalPages}
                     </span>
                     <Button

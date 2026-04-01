@@ -22,15 +22,15 @@ export function ActivityList({activities, loading}: ActivityListProps) {
 
     if (activities.length === 0) {
         return (
-            <div className="text-center py-16 text-slate-400 bg-white rounded-2xl border border-slate-100">
+            <div className="text-center py-16 text-slate-400 dark:text-slate-500 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700/50">
                 <p>No activity recorded yet.</p>
             </div>
         );
     }
 
     return (
-        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
-            <div className="divide-y divide-slate-100">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700/50 shadow-sm p-5">
+            <div className="divide-y divide-slate-100 dark:divide-slate-700/50">
                 {activities.map((activity) => (
                     <ActivityItem key={activity._id} activity={activity}/>
                 ))}

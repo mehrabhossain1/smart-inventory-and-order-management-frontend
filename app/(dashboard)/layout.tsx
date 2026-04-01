@@ -6,7 +6,7 @@ import {Toaster} from "@/components/ui/sonner";
 export default function DashboardLayout({children}: { children: React.ReactNode }) {
     return (
         <AuthProvider>
-            <div className="h-screen flex flex-col overflow-hidden bg-[#f8fafc]">
+            <div className="h-screen flex flex-col overflow-hidden bg-[#f8fafc] dark:bg-slate-950">
                 <DashboardHeader/>
                 <div className="flex flex-1 min-h-0">
                     <Sidebar/>

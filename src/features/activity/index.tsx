@@ -20,7 +20,7 @@ export default function ActivityPage() {
 
     return (
         <div className="space-y-4">
-            <p className="text-sm text-gray-500">{activities.length} recent activities</p>
+            <p className="text-sm text-gray-500 dark:text-slate-400">{activities.length} recent activities</p>
             <ActivityList activities={activities} loading={loading}/>
         </div>
     );

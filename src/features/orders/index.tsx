@@ -28,7 +28,7 @@ export default function OrdersPage() {
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <p className="text-sm text-slate-400">{total} orders</p>
+                <p className="text-sm text-slate-400 dark:text-slate-500">{total} orders</p>
                 <Button onClick={() => setDialogOpen(true)} className="bg-primary-light hover:bg-primary-light/90 shadow-sm shadow-primary-light/20 rounded-xl">
                     <Plus className="size-4 mr-2"/>
                     New Order
@@ -51,7 +51,7 @@ export default function OrdersPage() {
                     <Button variant="outline" size="sm" disabled={page <= 1} onClick={() => setPage((p) => p - 1)} className="rounded-xl">
                         <ChevronLeft className="size-4"/>
                     </Button>
-                    <span className="text-sm text-slate-500 tabular-nums px-3">{page} / {totalPages}</span>
+                    <span className="text-sm text-slate-500 dark:text-slate-400 tabular-nums px-3">{page} / {totalPages}</span>
                     <Button variant="outline" size="sm" disabled={page >= totalPages} onClick={() => setPage((p) => p + 1)} className="rounded-xl">
                         <ChevronRight className="size-4"/>
                     </Button>

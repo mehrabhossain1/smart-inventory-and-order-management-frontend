@@ -22,7 +22,7 @@ export default function RestockPage() {
 
     return (
         <div className="space-y-4">
-            <p className="text-sm text-gray-500">{queue.length} items need restocking</p>
+            <p className="text-sm text-gray-500 dark:text-slate-400">{queue.length} items need restocking</p>
 
             <RestockList
                 queue={queue}

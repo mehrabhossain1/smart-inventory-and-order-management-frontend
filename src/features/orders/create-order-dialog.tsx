@@ -155,7 +155,7 @@ export function CreateOrderDialog({open, onOpenChange, onSuccess}: CreateOrderDi
                             );
 
                             return (
-                                <div key={index} className="space-y-2 p-3 border rounded-lg bg-gray-50">
+                                <div key={index} className="space-y-2 p-3 border dark:border-slate-700 rounded-lg bg-gray-50 dark:bg-slate-800/50">
                                     <div className="flex items-start gap-2">
                                         <div className="flex-1 space-y-2">
                                             <Select
@@ -184,7 +184,7 @@ export function CreateOrderDialog({open, onOpenChange, onSuccess}: CreateOrderDi
                                                     placeholder="Qty"
                                                 />
                                                 {product && (
-                                                    <span className="text-sm text-gray-500">
+                                                    <span className="text-sm text-gray-500 dark:text-slate-400">
                                                         &times; {formatCurrency(product.price)} = {formatCurrency(product.price * line.quantity)}
                                                     </span>
                                                 )}
@@ -196,7 +196,7 @@ export function CreateOrderDialog({open, onOpenChange, onSuccess}: CreateOrderDi
                                                 variant="ghost"
                                                 size="icon"
                                                 onClick={() => removeLine(index)}
-                                                className="text-red-500 hover:text-red-700 hover:bg-red-50 shrink-0"
+                                                className="text-red-500 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/30 shrink-0"
                                             >
                                                 <Trash2 className="size-4"/>
                                             </Button>
@@ -214,9 +214,9 @@ export function CreateOrderDialog({open, onOpenChange, onSuccess}: CreateOrderDi
                         })}
                     </div>
 
-                    <div className="flex items-center justify-between border-t pt-3">
-                        <span className="text-sm font-medium text-gray-700">Total</span>
-                        <span className="text-lg font-bold text-gray-900">{formatCurrency(totalPrice)}</span>
+                    <div className="flex items-center justify-between border-t dark:border-slate-700 pt-3">
+                        <span className="text-sm font-medium text-gray-700 dark:text-slate-300">Total</span>
+                        <span className="text-lg font-bold text-gray-900 dark:text-slate-100">{formatCurrency(totalPrice)}</span>
                     </div>
 
                     <DialogFooter>

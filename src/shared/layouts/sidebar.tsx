@@ -43,7 +43,7 @@ export function Sidebar() {
 
             <aside
                 className={cn(
-                    "fixed top-16 left-0 z-50 h-[calc(100vh-4rem)] w-[260px] bg-white border-r border-slate-200/80 flex flex-col transition-transform duration-300 ease-in-out lg:relative lg:top-0 lg:h-full lg:translate-x-0 lg:z-auto shrink-0",
+                    "fixed top-16 left-0 z-50 h-[calc(100vh-4rem)] w-[260px] bg-white dark:bg-slate-900 border-r border-slate-200/80 dark:border-slate-700/50 flex flex-col transition-transform duration-300 ease-in-out lg:relative lg:top-0 lg:h-full lg:translate-x-0 lg:z-auto shrink-0",
                     sidebarOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"
                 )}
             >
@@ -63,23 +63,23 @@ export function Sidebar() {
                                     "flex items-center gap-3 px-3 py-2.5 rounded-xl text-[0.85rem] font-medium transition-all duration-200",
                                     isActive
                                         ? "bg-primary-light text-white shadow-md shadow-primary-light/25"
-                                        : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+                                        : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100"
                                 )}
                             >
-                                {Icon && <Icon className={cn("size-[18px]", isActive ? "text-white" : "text-slate-400")}/>}
+                                {Icon && <Icon className={cn("size-[18px]", isActive ? "text-white" : "text-slate-400 dark:text-slate-500")}/>}
                                 {link.name}
                             </Link>
                         );
                     })}
                 </nav>
 
-                <div className="p-4 mx-3 mb-3 rounded-xl bg-slate-50 border border-slate-100">
+                <div className="p-4 mx-3 mb-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50">
                     <div className="flex items-center gap-3 mb-3">
                         <div className="size-9 rounded-full bg-gradient-to-br from-primary-light to-purple-700 flex items-center justify-center text-white font-semibold text-sm shadow-sm">
                             {user?.username?.charAt(0).toUpperCase() || "U"}
                         </div>
                         <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-slate-800 truncate">
+                            <p className="text-sm font-medium text-slate-800 dark:text-slate-200 truncate">
                                 {user?.username}
                             </p>
                             <Badge
@@ -88,7 +88,7 @@ export function Sidebar() {
                                     "text-[10px] px-1.5 py-0 font-medium",
                                     user?.role === "admin"
                                         ? "border-primary-light/30 text-primary-light bg-primary-light/5"
-                                        : "border-slate-300 text-slate-500 bg-white"
+                                        : "border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800"
                                 )}
                             >
                                 {user?.role}
@@ -99,7 +99,7 @@ export function Sidebar() {
                         variant="ghost"
                         size="sm"
                         onClick={logout}
-                        className="w-full justify-start text-slate-400 hover:text-red-600 hover:bg-red-50/80 rounded-lg text-xs"
+                        className="w-full justify-start text-slate-400 hover:text-red-600 hover:bg-red-50/80 dark:hover:bg-red-950/30 rounded-lg text-xs"
                     >
                         <LogOut className="size-3.5 mr-2"/>
                         Sign out
