@@ -4,7 +4,6 @@ import {ReactNode, useEffect, useState} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {AuthSlide} from "@/shared/types";
-import {Package} from "lucide-react";
 
 type AuthLayoutProps = {
     children: ReactNode;
@@ -36,7 +35,7 @@ export function AuthLayout({children, slides}: AuthLayoutProps) {
 
                     <div className="absolute top-6 left-6 z-20">
                         <Link href="/" className="flex items-center space-x-2">
-                            <Package className="size-8 text-white"/>
+                            <Image src="/icon.svg" alt="Smart Inventory" width={32} height={32} className="rounded"/>
                             <span className="text-xl font-viga text-white hidden sm:inline">
                                 Smart Inventory
                             </span>

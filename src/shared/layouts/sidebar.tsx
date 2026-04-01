@@ -14,7 +14,6 @@ import {
     AlertTriangle,
     Activity,
     LogOut,
-    X,
 } from "lucide-react";
 import {Badge} from "@/components/ui/badge";
 import {Button} from "@/components/ui/button";
@@ -44,27 +43,10 @@ export function Sidebar() {
 
             <aside
                 className={cn(
-                    "fixed top-0 left-0 z-50 h-full w-64 bg-white border-r border-gray-200 flex flex-col transition-transform duration-300 lg:translate-x-0 lg:static lg:z-auto",
+                    "fixed top-16 left-0 z-50 h-[calc(100vh-4rem)] w-64 bg-white border-r border-gray-200 flex flex-col transition-transform duration-300 lg:translate-x-0 lg:static lg:z-auto",
                     sidebarOpen ? "translate-x-0" : "-translate-x-full"
                 )}
             >
-                <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200">
-                    <Link href="/dashboard" className="flex items-center gap-2">
-                        <Package className="size-6 text-primary-light"/>
-                        <span className="text-lg font-viga text-foreground">
-                            Smart Inventory
-                        </span>
-                    </Link>
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="lg:hidden"
-                        onClick={() => setSidebarOpen(false)}
-                    >
-                        <X className="size-5"/>
-                    </Button>
-                </div>
-
                 <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
                     {sidebarLinks.map((link) => {
                         const Icon = iconMap[link.icon];

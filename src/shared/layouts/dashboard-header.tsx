@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {useGlobalStore} from "@/store";
 import {useAuthStore} from "@/store/auth-store";
 import {Button} from "@/components/ui/button";
+import Image from "next/image";
 import {Menu} from "lucide-react";
 
 const pageTitles: Record<string, string> = {
@@ -23,8 +25,8 @@ export function DashboardHeader() {
     const title = pageTitles[pathname] || (pathname.startsWith("/dashboard/orders/") ? "Order Details" : "Dashboard");
 
     return (
-        <header className="h-16 border-b border-gray-200 bg-white flex items-center justify-between px-4 lg:px-6">
-            <div className="flex items-center gap-3">
+        <header className="h-16 shrink-0 border-b border-gray-200 bg-white flex items-center justify-between px-4 lg:px-6">
+            <div className="flex items-center gap-4">
                 <Button
                     variant="ghost"
                     size="icon"
@@ -33,7 +35,14 @@ export function DashboardHeader() {
                 >
                     <Menu className="size-5"/>
                 </Button>
-                <h1 className="text-xl font-semibold text-gray-900">{title}</h1>
+                <Link href="/dashboard" className="flex items-center gap-2">
+                    <Image src="/icon.svg" alt="Smart Inventory" width={28} height={28} className="rounded"/>
+                    <span className="text-lg font-viga text-foreground">
+                        Smart Inventory
+                    </span>
+                </Link>
+                <div className="hidden sm:block h-6 w-px bg-gray-200"/>
+                <h1 className="hidden sm:block text-lg font-semibold text-gray-900">{title}</h1>
             </div>
 
             <div className="flex items-center gap-3">
