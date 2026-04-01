@@ -41,7 +41,7 @@ export function RestockList({queue, loading, isAdmin, onRestock, onRefresh}: Res
         return (
             <div className="space-y-3">
                 {Array.from({length: 5}).map((_, i) => (
-                    <Skeleton key={i} className="h-12 rounded-lg"/>
+                    <Skeleton key={i} className="h-14 rounded-xl"/>
                 ))}
             </div>
         );
@@ -49,32 +49,32 @@ export function RestockList({queue, loading, isAdmin, onRestock, onRefresh}: Res
 
     if (queue.length === 0) {
         return (
-            <div className="text-center py-12 text-gray-500">
+            <div className="text-center py-16 text-slate-400 bg-white rounded-2xl border border-slate-100">
                 <p>No items in the restock queue. All products are well-stocked!</p>
             </div>
         );
     }
 
     return (
-        <div className="border rounded-lg overflow-x-auto">
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-x-auto">
             <Table>
                 <TableHeader>
-                    <TableRow>
-                        <TableHead>Product</TableHead>
-                        <TableHead>Current Stock</TableHead>
-                        <TableHead>Threshold</TableHead>
-                        <TableHead>Priority</TableHead>
-                        <TableHead className="w-32">Actions</TableHead>
+                    <TableRow className="bg-slate-50/50 hover:bg-slate-50/50">
+                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Product</TableHead>
+                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Stock</TableHead>
+                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Threshold</TableHead>
+                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Priority</TableHead>
+                        <TableHead className="text-xs uppercase tracking-wider text-slate-400 font-semibold w-40">Actions</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {queue.map((item) => (
-                        <TableRow key={item._id}>
-                            <TableCell className="font-medium">{item.product.name}</TableCell>
-                            <TableCell className="font-mono">{item.currentStock}</TableCell>
-                            <TableCell className="font-mono">{item.threshold}</TableCell>
+                        <TableRow key={item._id} className="hover:bg-slate-50/50 transition-colors">
+                            <TableCell className="font-medium text-slate-700">{item.product.name}</TableCell>
+                            <TableCell className="tabular-nums font-medium text-slate-600">{item.currentStock}</TableCell>
+                            <TableCell className="tabular-nums text-slate-400">{item.threshold}</TableCell>
                             <TableCell>
-                                <Badge variant="outline" className={priorityColors[item.priority] || ""}>
+                                <Badge variant="outline" className={`text-[11px] font-medium px-2.5 ${priorityColors[item.priority] || ""}`}>
                                     {item.priority}
                                 </Badge>
                             </TableCell>
@@ -85,9 +85,9 @@ export function RestockList({queue, loading, isAdmin, onRestock, onRefresh}: Res
                                             variant="ghost"
                                             size="sm"
                                             onClick={() => onRestock(item)}
-                                            className="text-primary-light hover:text-primary-light/80"
+                                            className="text-primary-light hover:text-primary-light/80 hover:bg-primary-light/5 rounded-lg text-xs"
                                         >
-                                            <PackagePlus className="size-4 mr-1"/>
+                                            <PackagePlus className="size-3.5 mr-1"/>
                                             Restock
                                         </Button>
                                     )}
@@ -95,11 +95,11 @@ export function RestockList({queue, loading, isAdmin, onRestock, onRefresh}: Res
                                         <AlertDialog>
                                             <AlertDialogTrigger asChild>
                                                 <Button variant="ghost" size="icon"
-                                                        className="size-8 text-red-500 hover:text-red-700 hover:bg-red-50">
-                                                    <Trash2 className="size-4"/>
+                                                        className="size-8 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50">
+                                                    <Trash2 className="size-3.5"/>
                                                 </Button>
                                             </AlertDialogTrigger>
-                                            <AlertDialogContent>
+                                            <AlertDialogContent className="rounded-2xl">
                                                 <AlertDialogHeader>
                                                     <AlertDialogTitle>Remove from Queue</AlertDialogTitle>
                                                     <AlertDialogDescription>
@@ -107,8 +107,9 @@ export function RestockList({queue, loading, isAdmin, onRestock, onRefresh}: Res
                                                     </AlertDialogDescription>
                                                 </AlertDialogHeader>
                                                 <AlertDialogFooter>
-                                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                                    <AlertDialogAction onClick={() => handleRemove(item._id)} className="bg-red-600 hover:bg-red-700">
+                                                    <AlertDialogCancel className="rounded-xl">Cancel</AlertDialogCancel>
+                                                    <AlertDialogAction onClick={() => handleRemove(item._id)}
+                                                                      className="bg-red-500 hover:bg-red-600 rounded-xl">
                                                         Remove
                                                     </AlertDialogAction>
                                                 </AlertDialogFooter>

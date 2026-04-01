@@ -45,11 +45,11 @@ export default function ProductsPage() {
     };
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <p className="text-sm text-gray-500">{total} products</p>
+                <p className="text-sm text-slate-400">{total} products</p>
                 {isAdmin && (
-                    <Button onClick={handleAdd} className="bg-primary-light hover:bg-primary-light/90">
+                    <Button onClick={handleAdd} className="bg-primary-light hover:bg-primary-light/90 shadow-sm shadow-primary-light/20 rounded-xl">
                         <Plus className="size-4 mr-2"/>
                         Add Product
                     </Button>
@@ -81,17 +81,19 @@ export default function ProductsPage() {
                         size="sm"
                         disabled={page <= 1}
                         onClick={() => setPage((p) => p - 1)}
+                        className="rounded-xl"
                     >
                         <ChevronLeft className="size-4"/>
                     </Button>
-                    <span className="text-sm text-gray-600">
-                        Page {page} of {totalPages}
+                    <span className="text-sm text-slate-500 tabular-nums px-3">
+                        {page} / {totalPages}
                     </span>
                     <Button
                         variant="outline"
                         size="sm"
                         disabled={page >= totalPages}
                         onClick={() => setPage((p) => p + 1)}
+                        className="rounded-xl"
                     >
                         <ChevronRight className="size-4"/>
                     </Button>

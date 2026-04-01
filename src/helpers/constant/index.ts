@@ -63,19 +63,19 @@ export const orderStatuses = [
 ] as const;
 
 export const statusColors: Record<string, string> = {
-    Pending: "bg-yellow-100 text-yellow-800 border-yellow-200",
-    Confirmed: "bg-blue-100 text-blue-800 border-blue-200",
-    Shipped: "bg-indigo-100 text-indigo-800 border-indigo-200",
-    Delivered: "bg-green-100 text-green-800 border-green-200",
-    Cancelled: "bg-red-100 text-red-800 border-red-200",
-    Active: "bg-green-100 text-green-800 border-green-200",
-    "Out of Stock": "bg-red-100 text-red-800 border-red-200",
+    Pending: "bg-amber-50 text-amber-600 border-amber-200/60 rounded-full",
+    Confirmed: "bg-blue-50 text-blue-600 border-blue-200/60 rounded-full",
+    Shipped: "bg-violet-50 text-violet-600 border-violet-200/60 rounded-full",
+    Delivered: "bg-emerald-50 text-emerald-600 border-emerald-200/60 rounded-full",
+    Cancelled: "bg-red-50 text-red-500 border-red-200/60 rounded-full",
+    Active: "bg-emerald-50 text-emerald-600 border-emerald-200/60 rounded-full",
+    "Out of Stock": "bg-red-50 text-red-500 border-red-200/60 rounded-full",
 };
 
 export const priorityColors: Record<string, string> = {
-    High: "bg-red-100 text-red-800 border-red-200",
-    Medium: "bg-amber-100 text-amber-800 border-amber-200",
-    Low: "bg-blue-100 text-blue-800 border-blue-200",
+    High: "bg-red-50 text-red-600 border-red-200/60 rounded-full",
+    Medium: "bg-amber-50 text-amber-600 border-amber-200/60 rounded-full",
+    Low: "bg-sky-50 text-sky-600 border-sky-200/60 rounded-full",
 };
 
 export const demoCredentials = {

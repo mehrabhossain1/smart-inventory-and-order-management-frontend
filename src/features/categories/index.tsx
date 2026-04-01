@@ -28,11 +28,13 @@ export default function CategoriesPage() {
     };
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <p className="text-sm text-gray-500">{categories.length} categories</p>
+                <div>
+                    <p className="text-sm text-slate-400">{categories.length} categories</p>
+                </div>
                 {isAdmin && (
-                    <Button onClick={handleAdd} className="bg-primary-light hover:bg-primary-light/90">
+                    <Button onClick={handleAdd} className="bg-primary-light hover:bg-primary-light/90 shadow-sm shadow-primary-light/20 rounded-xl">
                         <Plus className="size-4 mr-2"/>
                         Add Category
                     </Button>

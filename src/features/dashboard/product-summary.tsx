@@ -1,6 +1,5 @@
 "use client";
 
-import {Card} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 
 interface ProductSummaryItem {
@@ -17,39 +16,40 @@ interface ProductSummaryProps {
 
 export function ProductSummary({products}: ProductSummaryProps) {
     return (
-        <Card className="p-5">
-            <h3 className="text-base font-semibold text-gray-900 mb-4">Product Stock Summary</h3>
+        <div className="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm">
+            <h3 className="text-sm font-semibold text-slate-800 uppercase tracking-wider mb-5">Product Stock Summary</h3>
             {products.length === 0 ? (
-                <p className="text-sm text-gray-500">No products found.</p>
+                <p className="text-sm text-slate-400">No products found.</p>
             ) : (
-                <div className="space-y-3">
+                <div className="space-y-1">
                     {products.map((product, i) => {
                         const isLowStock = product.stockLevel === "Low Stock";
                         const isOutOfStock = product.quantity === 0;
                         return (
                             <div
                                 key={i}
-                                className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0"
+                                className="flex items-center justify-between py-3 px-3 -mx-3 rounded-xl hover:bg-slate-50/80 transition-colors duration-200"
                             >
                                 <div>
-                                    <p className="text-sm font-medium text-gray-900">{product.name}</p>
-                                    <p className="text-xs text-gray-500">
+                                    <p className="text-sm font-medium text-slate-700">{product.name}</p>
+                                    <p className="text-xs text-slate-400 mt-0.5">
                                         Threshold: {product.threshold}
                                     </p>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-sm font-semibold text-gray-700">
-                                        {product.quantity} left
+                                <div className="flex items-center gap-2.5">
+                                    <span className="text-sm font-semibold text-slate-600 tabular-nums">
+                                        {product.quantity}
                                     </span>
                                     <Badge
                                         variant="outline"
-                                        className={
+                                        className={cn(
+                                            "text-[11px] font-medium rounded-full px-2.5",
                                             isOutOfStock
-                                                ? "bg-red-100 text-red-800 border-red-200"
+                                                ? "bg-red-50 text-red-600 border-red-200"
                                                 : isLowStock
-                                                    ? "bg-amber-100 text-amber-800 border-amber-200"
-                                                    : "bg-green-100 text-green-800 border-green-200"
-                                        }
+                                                    ? "bg-amber-50 text-amber-600 border-amber-200"
+                                                    : "bg-emerald-50 text-emerald-600 border-emerald-200"
+                                        )}
                                     >
                                         {isOutOfStock ? "Out of Stock" : product.stockLevel}
                                     </Badge>
@@ -59,6 +59,10 @@ export function ProductSummary({products}: ProductSummaryProps) {
                     })}
                 </div>
             )}
-        </Card>
+        </div>
     );
+}
+
+function cn(...classes: (string | undefined | false)[]) {
+    return classes.filter(Boolean).join(" ");
 }

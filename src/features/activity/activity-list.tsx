@@ -1,6 +1,5 @@
 "use client";
 
-import {Card} from "@/components/ui/card";
 import type {ActivityLog} from "@/shared/types";
 import {ActivityItem} from "./activity-item";
 import {Skeleton} from "@/components/ui/skeleton";
@@ -15,7 +14,7 @@ export function ActivityList({activities, loading}: ActivityListProps) {
         return (
             <div className="space-y-3">
                 {Array.from({length: 5}).map((_, i) => (
-                    <Skeleton key={i} className="h-16 rounded-lg"/>
+                    <Skeleton key={i} className="h-16 rounded-xl"/>
                 ))}
             </div>
         );
@@ -23,17 +22,19 @@ export function ActivityList({activities, loading}: ActivityListProps) {
 
     if (activities.length === 0) {
         return (
-            <div className="text-center py-12 text-gray-500">
+            <div className="text-center py-16 text-slate-400 bg-white rounded-2xl border border-slate-100">
                 <p>No activity recorded yet.</p>
             </div>
         );
     }
 
     return (
-        <Card className="p-5">
-            {activities.map((activity) => (
-                <ActivityItem key={activity._id} activity={activity}/>
-            ))}
-        </Card>
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
+            <div className="divide-y divide-slate-100">
+                {activities.map((activity) => (
+                    <ActivityItem key={activity._id} activity={activity}/>
+                ))}
+            </div>
+        </div>
     );
 }

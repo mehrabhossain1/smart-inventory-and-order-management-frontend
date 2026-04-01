@@ -1,6 +1,5 @@
 "use client";
 
-import {Card} from "@/components/ui/card";
 import type {ActivityLog} from "@/shared/types";
 import {formatRelativeTime, formatActionLabel} from "@/helpers";
 
@@ -10,12 +9,12 @@ interface ActivityFeedProps {
 
 export function ActivityFeed({activities}: ActivityFeedProps) {
     return (
-        <Card className="p-5">
-            <h3 className="text-base font-semibold text-gray-900 mb-4">Recent Activity</h3>
+        <div className="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm">
+            <h3 className="text-sm font-semibold text-slate-800 uppercase tracking-wider mb-5">Recent Activity</h3>
             {activities.length === 0 ? (
-                <p className="text-sm text-gray-500">No recent activity.</p>
+                <p className="text-sm text-slate-400">No recent activity.</p>
             ) : (
-                <div className="space-y-3">
+                <div className="space-y-1">
                     {activities.map((activity) => {
                         const performer =
                             typeof activity.performedBy === "object"
@@ -24,17 +23,17 @@ export function ActivityFeed({activities}: ActivityFeedProps) {
                         return (
                             <div
                                 key={activity._id}
-                                className="flex items-start gap-3 py-2 border-b border-gray-100 last:border-0"
+                                className="flex items-start gap-3 py-3 px-3 -mx-3 rounded-xl hover:bg-slate-50/80 transition-colors duration-200"
                             >
-                                <div className="size-2 rounded-full bg-primary-light mt-2 shrink-0"/>
+                                <div className="size-2 rounded-full bg-primary-light mt-2 shrink-0 ring-4 ring-primary-light/10"/>
                                 <div className="flex-1 min-w-0">
-                                    <p className="text-sm text-gray-900">
-                                        <span className="font-medium">{formatActionLabel(activity.action)}</span>
+                                    <p className="text-sm text-slate-700">
+                                        <span className="font-medium text-slate-800">{formatActionLabel(activity.action)}</span>
                                         {activity.details && (
-                                            <span className="text-gray-500"> — {activity.details}</span>
+                                            <span className="text-slate-400"> — {activity.details}</span>
                                         )}
                                     </p>
-                                    <p className="text-xs text-gray-400 mt-0.5">
+                                    <p className="text-xs text-slate-400 mt-1">
                                         {performer} &middot; {formatRelativeTime(activity.timestamp)}
                                     </p>
                                 </div>
@@ -43,6 +42,6 @@ export function ActivityFeed({activities}: ActivityFeedProps) {
                     })}
                 </div>
             )}
-        </Card>
+        </div>
     );
 }
